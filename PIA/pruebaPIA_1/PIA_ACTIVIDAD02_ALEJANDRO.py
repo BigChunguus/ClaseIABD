@@ -17,14 +17,13 @@ primeraLetra = nombreCliente[0]
 nombreAndroide = primeraLetra + "2D2"
 
 # Mostrar el mensaje del androide
-mensajeAndroide = f"¡Qué casualidad, mi nombre también empieza por ‘{primeraLetra}’, me llamo {nombreAndroide}!"
-print(mensajeAndroide)
+print(f"¡Qué casualidad, mi nombre también empieza por ‘{primeraLetra}’, me llamo {nombreAndroide}!")
 
 # Parte 2: Tomando el pedido
 
 # Pregunta invertida
 preguntaInvertida = "¿Qué desea tomar?"
-preguntaInvertida = preguntaInvertida[::-1]  # Invertir la pregunta
+preguntaInvertida = preguntaInvertida[::-1]  # Invertir la pregunta mediante el slicing -1
 print(preguntaInvertida)
 
 # Corrección del mensaje
@@ -34,7 +33,7 @@ print("¿Qué desea tomar?")
 # Ingreso del pedido
 pedidoCliente = input("Por favor, ingrese el nombre de la bebida que desea tomar: ")
 
-# Creación de la lista de bebidas
+# Lista de bebidas
 bebidas = ["Leche de Bantha", "Zumo de Jawa", "Slurp", "Té de Dune", "Rickcola"]
 
 # Añadir el pedido del cliente a la lista
@@ -85,7 +84,7 @@ print(clientes_bebidas.keys())
 
 # Modificar el nombre de un cliente detenido
 clienteDetenido = input("¿Qué cliente ha sido detenido por el Imperio? ")
-print("{} HA SIDO DETENIDO POR EL IMPERIO".format(clienteDetenido.upper()))
+print(f"{clienteDetenido.upper()} HA SIDO DETENIDO POR EL IMPERIO")
 
 # Modificar el nombre en el diccionario
 bebidaFavorita = clientes_bebidas.pop(clienteDetenido)
@@ -96,4 +95,4 @@ print("Diccionario actualizado:")
 print(clientes_bebidas)
 
 # Despedida del androide
-print("Gracias por su visita, {}. ¡Hasta la próxima!".format(nombreCliente))
+print(f"Gracias por su visita, {nombreCliente}. ¡Hasta la próxima!")
