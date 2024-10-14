@@ -8,7 +8,7 @@ services:
 
   namenode:
     build: ./NameNode
-    image: hadoop-amenode-image-iabd12:latest
+    image: hadoop-namenode-image-iabd12:latest
     container_name: namenode
     hostname: namenode
     command: /opt/bd/start-daemons.sh
@@ -16,6 +16,8 @@ services:
         - "9870:9870"
     networks:
         - hadoop-net
+    volumes:
+        - /c/Users/IABD12/Documents/GitHub/ClaseIABD/David:/home
 
   resourcemanager:
     build: ./ResourceManager
@@ -27,6 +29,8 @@ services:
         - "8088:8088"
     networks:
         - hadoop-net
+    volumes:
+        - /c/Users/IABD12/Documents/GitHub/ClaseIABD/David:/home
 
   dnnm:
     build: ./DataNode-NodeManager
@@ -37,5 +41,7 @@ services:
     command: /opt/bd/start-daemons.sh
     networks:
         - hadoop-net
+    # volumes:
+      #  - /c/Users/IABD12/Documents/GitHub/ClaseIABD/David:/home
 
 
