@@ -35,8 +35,8 @@ services:
   dnnm:
     build: ./DataNode-NodeManager
     image: hadoop-datanode-image-iabd12:latest
-    hostname: datanode
     container_name: datanode
+    hostname: datanode
     ports:
         - "9866:9866"
         - "9864:9864"
@@ -48,5 +48,3 @@ services:
         - hadoop-net
     # volumes:
       #  - /c/Users/IABD12/Documents/GitHub/ClaseIABD/David:/home
-
-
