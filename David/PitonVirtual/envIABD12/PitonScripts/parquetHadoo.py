@@ -6,7 +6,7 @@ client = InsecureClient(hdfs_url, user=hdfs_user)
 
 archivo_local = '..\\..\\..\\..\\David2\\2019-Nov.csv'
 ruta_destino_hdfs = '/user/hdadmin/2019-Nov.csv'
-# Cargar el archivo desde el equipo local a HDFS
+
 try:
     with open(archivo_local, 'rb') as file:
         client.write(ruta_destino_hdfs, file)
