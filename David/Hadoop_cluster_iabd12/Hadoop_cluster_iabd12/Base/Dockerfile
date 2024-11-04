@@ -25,7 +25,7 @@ ENV REPOSITORY https://dlcdn.apache.org/hadoop/common
 # PASO 1: Actualiza el S.O, instalo Java, python3, curl, iputils y limpio y borro.
 RUN echo "$LOG_TAG Actualizando e instalando paquetes básicos" && \
     apt-get update && \
-    apt-get install -y --no-install-recommends openjdk-8-jre python3 curl locales iputils-ping nano && \
+    apt-get install -y --no-install-recommends openjdk-8-jre python3 python3-pip curl locales iputils-ping nano && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists
 

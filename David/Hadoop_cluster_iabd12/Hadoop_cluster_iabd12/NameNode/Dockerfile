@@ -17,6 +17,17 @@ ENV HADOOP_CONF_DIR=${HADOOP_HOME}/etc/hadoop/
 ENV DATA_DIR=/var/data/hadoop/hdfs
 
 
+RUN apt-get -q update && \
+      apt-get -q install -y mysql-server bsdmainutils jupyter && \
+      apt-get clean && \
+      rm -rf /var/lib/apt/lists/*
+
+# Desactivación autentificación Jupyter Notebooks
+RUN mkdir -p /root/.jupyter && \
+    touch /root/.jupyter/jupyter_notebook_config.py && \
+    echo "c.NotebookApp.token = ''" >> /root/.jupyter/jupyter_notebook_config.py && \
+    echo "c.NotebookApp.password = ''" >> /root/.jupyter/jupyter_notebook_config.py
+
 # Crea directorios para los datos de HDFS del NameNode y haz que sean propiedad del usuario hdadmin. 
 # En un sistema real, deberíamos crear varios directorios en particiones separadas con suficiente espacio libre.
 RUN echo "$LOG_TAG Crea directorios para los datos de HDFS del NameNode y haz que sean propiedad del usuario hdadmin" && \

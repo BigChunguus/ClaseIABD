@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  namenode:
+    image: bde2020/hadoop-namenode:latest
+    container_name: namenode2
+    environment:
+      - CLUSTER_NAME=test-cluster
+    ports:
+      - "9870:9870"
+    volumes:
+      - namenode_data:/hadoop/dfs/name
+    networks:
+      - hadoop_network
+
+  datanode:
+    image: bde2020/hadoop-datanode:latest
+    container_name: datanode2
+    environment:
+      - CLUSTER_NAME=test-cluster
+      - NAMENODE_URI=hdfs://namenode:8020
+    ports:
+      - "9864:9864"
+    volumes:
+      - datanode_data:/hadoop/dfs/data
+    networks:
+      - hadoop_network
+
+  resourcemanager:
+    image: bde2020/hadoop-resourcemanager:latest
+    container_name: resourcemanager2
+    environment:
+      - CLUSTER_NAME=test-cluster
+      - NAMENODE_URI=hdfs://namenode:8020
+    ports:
+      - "8088:8088"
+    networks:
+      - hadoop_network
+
+  jupyter:
+    image: jupyter/base-notebook
+    container_name: jupyter2
+    ports:
+      - "8888:8888"
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    volumes:
+      - ./notebooks:/home/jovyan/work
+    networks:
+      - hadoop_network
+
+volumes:
+  namenode_data:
+  datanode_data:
+
+networks:
+  hadoop_network:

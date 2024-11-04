@@ -1,10 +1,11 @@
 version: '3.1'
 
 networks:
-  hadoop-net:
-    driver: bridge
+    hadoop-net:
+        driver: bridge
 
 services:
+
   namenode:
     build: ./NameNode
     image: hadoop-namenode-image-iabd12:latest
@@ -12,9 +13,11 @@ services:
     hostname: namenode
     command: /opt/bd/start-daemons.sh
     ports:
-      - "9870:9870"
+        - "9870:9870"
     networks:
-      - hadoop-net
+        - hadoop-net
+    volumes:
+        - /c/Users/IABD12/Documents/GitHub/ClaseIABD/David:/home
 
   resourcemanager:
     build: ./ResourceManager
@@ -23,33 +26,27 @@ services:
     hostname: resourcemanager
     command: /opt/bd/start-daemons.sh
     ports:
-      - "8088:8088"
+        - "8088:8088"
     networks:
-      - hadoop-net
+        - hadoop-net
+    volumes:
+        - /c/Users/IABD12/Documents/GitHub/ClaseIABD/David:/home
 
-  datanode:
+  dnnm:
     build: ./DataNode-NodeManager
     image: hadoop-datanode-image-iabd12:latest
-    container_name: datanode
     hostname: datanode
+    container_name: datanode
+    ports:
+        - "9866:9866"
+        - "9864:9864"
     depends_on:
-      - namenode
-      - resourcemanager
+        - namenode
+        - resourcemanager
     command: /opt/bd/start-daemons.sh
-    ports:
-      - "9866:9866"
-      - "9864:9864"
     networks:
-      - hadoop-net
+        - hadoop-net
+    # volumes:
+      #  - /c/Users/IABD12/Documents/GitHub/ClaseIABD/David:/home
 
-  jupyter:
-    build: ./Jupyter
-    image: hadoop-jupyter-image-iabd12:latest
-    container_name: jupyter
-    hostname: jupyter
-    ports:
-      - "8888:8888"
-    depends_on:
-      - namenode
-    networks:
-      - hadoop-net
+
