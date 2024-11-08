@@ -1,5 +1,5 @@
 FROM ubuntu:latest
-MAINTAINER genio <acruza02@educantabria.es>
+LABEL mantianer="genio <acruza02@educantabria.es>"
 
 # Cambio a usuario root, es decir, que todos los cambios que realizaré en esta imagen será como
 # usuario root
@@ -13,10 +13,10 @@ USER root
 # REPOSITORY = https://dlcdn.apache.org/spark El repositorio donde se bajará Spark.
 #
 
-ENV SPARK_VERSION=3.5.0
-ENV BASE_DIR /opt/bd
-ENV LOG_TAG "[BASE Spark_${SPARK_VERSION}]:"
-ENV REPOSITORY https://dlcdn.apache.org/spark
+ENV SPARK_VERSION=3.5.3
+ENV BASE_DIR=/opt/bd
+ENV LOG_TAG="[BASE Spark_${SPARK_VERSION}]:"
+ENV REPOSITORY=https://dlcdn.apache.org/spark
 ENV HADOOP_VERSION=3
 
 
@@ -44,7 +44,7 @@ WORKDIR ${BASE_DIR}
 # Descarga la última versión 3.5.0 Spark en /opt/bd: REalizo un enlace símbolico
 
 RUN echo "$LOG_TAG Descargando Apache Spark" && \
-curl -fLO "${REPOSITORY}/spark-${SPARK_VERSION}/spark-$SPARK_VERSION-binhadoop$HADOOP_VERSION.tgz" && \
+curl -fLO "${REPOSITORY}/spark-${SPARK_VERSION}/spark-$SPARK_VERSION-bin-hadoop$HADOOP_VERSION.tgz" && \
 tar xzvf spark-$SPARK_VERSION-bin-hadoop$HADOOP_VERSION.tgz && \
 ln -s spark-${SPARK_VERSION}-bin-hadoop$HADOOP_VERSION spark && \
 rm spark-$SPARK_VERSION-bin-hadoop$HADOOP_VERSION.tgz
