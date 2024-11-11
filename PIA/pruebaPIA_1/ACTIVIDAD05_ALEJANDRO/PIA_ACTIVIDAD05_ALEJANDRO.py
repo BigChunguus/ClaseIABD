@@ -66,20 +66,26 @@ def mostrar_archivos(mi_casa):
     print("\n📜 Archivos de la casa:")
     lista_archivos = []
     contador = 1
-    # El método glob() busca archivos que coinciden con el patrón especificado.
-    # Aquí, "*.txt" busca todos los archivos .txt dentro de la carpeta "mi_casa".
     for archivo in mi_casa.glob("*.txt"):
         archivo_str = str(archivo.name)
-        print(f"📂 [{contador}] - {archivo_str}")
+        print(f"📝 [{contador}] - {archivo_str}")
         lista_archivos.append(archivo)
         contador += 1
+    if not lista_archivos:
+        print("⚠️ No hay archivos en esta casa.")
+    else:
+        print("🛑 [0] - Volver al menú principal")
     return lista_archivos
 
 # Método que permite al usuario elegir un archivo de una lista de archivos.
 def elegir_archivo(mis_archivos):
+    if not mis_archivos:
+        return None
     eleccion_correcta = ""
-    while not eleccion_correcta.isnumeric() or not (1 <= int(eleccion_correcta) <= len(mis_archivos)):
-        eleccion_correcta = input("\n✨ ¡Elige el número del archivo que deseas leer! (Escoge con sabiduría): ")
+    while not eleccion_correcta.isnumeric() or not (0 <= int(eleccion_correcta) <= len(mis_archivos)):
+        eleccion_correcta = input("\n✨ ¡Elige el número del archivo que deseas leer! (Escoge con sabiduría, o elige 0 para volver): ")
+    if int(eleccion_correcta) == 0:
+        return None
     return mis_archivos[int(eleccion_correcta) - 1]
 
 # Método que lee el contenido de un archivo y lo imprime en pantalla.
@@ -153,7 +159,14 @@ while not finalizar_programa:
         mi_casa = elegir_casa(mis_casas)
         mis_archivos = mostrar_archivos(mi_casa)
         mi_archivo = elegir_archivo(mis_archivos)
-        leer_archivo(mi_archivo)
+
+        # Lo tuve que crear, porque en "mostrar_archivo", si esta carpeta no tiene archivos se queda en bucle
+        # infinito. Por eso, puse una clave de salida (0), pero al seleccionar 0, manda un "archivo" el cual no existe.
+        # Y pues... da error
+        if mi_archivo:
+            leer_archivo(mi_archivo)
+        else:
+            pass
         volver_inicio()
 
     elif menu == 2:

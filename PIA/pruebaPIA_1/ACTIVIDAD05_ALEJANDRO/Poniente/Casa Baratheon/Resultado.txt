@@ -1,0 +1,217 @@
+C:\Users\IABD12\Documents\GitHub\ClaseIABD\PIA\pruebaPIA_1\.venv\Scripts\python.exe C:\Users\IABD12\Documents\GitHub\ClaseIABD\PIA\pruebaPIA_1\ACTIVIDAD05_ALEJANDRO\PIA_ACTIVIDAD05_ALEJANDRO.py 
+¡Bienvenido a Poniente!
+El reino de las grandes casas y misterios... ¡Prepara tu espada y mente, porque gestionaremos las casas de Poniente con sabiduría!
+
+🏰 Actualmente, hay 6 casas activas en Poniente. ¡El reino está vibrante con vida!
+
+--- 🏰 Menú Principal de Poniente ---
+1. Leer información de una casa 🏠
+2. Crear un archivo con información de una casa 📄
+3. Crear una nueva casa 🏰
+4. Eliminar un archivo de una casa 🗑️
+5. Eliminar una casa 🏚️
+6. Salir 🚪
+
+Elige tu destino, noble aventurero (1-6): 1
+
+🏠 Casas de Poniente:
+🪄 [1] - Casa Baratheon
+🪄 [2] - Casa Chema
+🪄 [3] - Casa Lannister
+🪄 [4] - Casa Stark
+🪄 [5] - Casa Tyrell
+🪄 [6] - Casa Velaryon
+
+🔮 ¡Selecciona el número de la casa que deseas leer! (Elige sabiamente): 1
+
+📜 Archivos de la casa:
+📝 [1] - Lema.txt
+📝 [2] - Nombre de bastardo.txt
+📝 [3] - Región.txt
+📝 [4] - Resultado.txt
+📝 [5] - Señor.txt
+🛑 [0] - Volver al menú principal
+
+✨ ¡Elige el número del archivo que deseas leer! (Escoge con sabiduría, o elige 0 para volver): 1
+
+📖 Contenido de Lema.txt:
+"Nuestra es la furia".
+
+🌟 Escribe 'V' para volver al menú principal y seguir con la aventura: v
+
+--- 🏰 Menú Principal de Poniente ---
+1. Leer información de una casa 🏠
+2. Crear un archivo con información de una casa 📄
+3. Crear una nueva casa 🏰
+4. Eliminar un archivo de una casa 🗑️
+5. Eliminar una casa 🏚️
+6. Salir 🚪
+
+Elige tu destino, noble aventurero (1-6): 2
+
+🏠 Casas de Poniente:
+🪄 [1] - Casa Baratheon
+🪄 [2] - Casa Chema
+🪄 [3] - Casa Lannister
+🪄 [4] - Casa Stark
+🪄 [5] - Casa Tyrell
+🪄 [6] - Casa Velaryon
+
+🔮 ¡Selecciona el número de la casa que deseas leer! (Elige sabiamente): 3
+
+⚔️ ¡Introduce el nombre del archivo que deseas crear (sin olvidar la extensión)! 📄: Conquistado
+📜 Introduce el contenido del archivo (lo que será revelado en el pergamino): 10/11/2024
+
+🎉 El archivo 'Conquistado.txt' ha sido creado exitosamente.
+
+🌟 Escribe 'V' para volver al menú principal y seguir con la aventura: v
+
+--- 🏰 Menú Principal de Poniente ---
+1. Leer información de una casa 🏠
+2. Crear un archivo con información de una casa 📄
+3. Crear una nueva casa 🏰
+4. Eliminar un archivo de una casa 🗑️
+5. Eliminar una casa 🏚️
+6. Salir 🚪
+
+Elige tu destino, noble aventurero (1-6): 3
+
+🏰 ¡Introduce el nombre de la nueva casa en Poniente! (Sin miedo, ¡la nueva dinastía se alza!): Cruz
+
+🎉 ¡La casa 'Cruz' ha sido creada con éxito! ¡El reino crece!
+
+🌟 Escribe 'V' para volver al menú principal y seguir con la aventura: v
+
+--- 🏰 Menú Principal de Poniente ---
+1. Leer información de una casa 🏠
+2. Crear un archivo con información de una casa 📄
+3. Crear una nueva casa 🏰
+4. Eliminar un archivo de una casa 🗑️
+5. Eliminar una casa 🏚️
+6. Salir 🚪
+
+Elige tu destino, noble aventurero (1-6): 2
+
+🏠 Casas de Poniente:
+🪄 [1] - Casa Baratheon
+🪄 [2] - Casa Chema
+🪄 [3] - Casa Lannister
+🪄 [4] - Casa Stark
+🪄 [5] - Casa Tyrell
+🪄 [6] - Casa Velaryon
+🪄 [7] - Cruz
+
+🔮 ¡Selecciona el número de la casa que deseas leer! (Elige sabiamente): 7
+
+⚔️ ¡Introduce el nombre del archivo que deseas crear (sin olvidar la extensión)! 📄: Lema
+📜 Introduce el contenido del archivo (lo que será revelado en el pergamino): Alejandro Cruz Aguilar
+
+🎉 El archivo 'Lema.txt' ha sido creado exitosamente.
+
+🌟 Escribe 'V' para volver al menú principal y seguir con la aventura: v
+
+--- 🏰 Menú Principal de Poniente ---
+1. Leer información de una casa 🏠
+2. Crear un archivo con información de una casa 📄
+3. Crear una nueva casa 🏰
+4. Eliminar un archivo de una casa 🗑️
+5. Eliminar una casa 🏚️
+6. Salir 🚪
+
+Elige tu destino, noble aventurero (1-6): 1
+
+🏠 Casas de Poniente:
+🪄 [1] - Casa Baratheon
+🪄 [2] - Casa Chema
+🪄 [3] - Casa Lannister
+🪄 [4] - Casa Stark
+🪄 [5] - Casa Tyrell
+🪄 [6] - Casa Velaryon
+🪄 [7] - Cruz
+
+🔮 ¡Selecciona el número de la casa que deseas leer! (Elige sabiamente): 7
+
+📜 Archivos de la casa:
+📝 [1] - Lema.txt
+🛑 [0] - Volver al menú principal
+
+✨ ¡Elige el número del archivo que deseas leer! (Escoge con sabiduría, o elige 0 para volver): 1
+
+📖 Contenido de Lema.txt:
+Alejandro Cruz Aguilar
+
+🌟 Escribe 'V' para volver al menú principal y seguir con la aventura: v
+
+--- 🏰 Menú Principal de Poniente ---
+1. Leer información de una casa 🏠
+2. Crear un archivo con información de una casa 📄
+3. Crear una nueva casa 🏰
+4. Eliminar un archivo de una casa 🗑️
+5. Eliminar una casa 🏚️
+6. Salir 🚪
+
+Elige tu destino, noble aventurero (1-6): 4
+
+🏠 Casas de Poniente:
+🪄 [1] - Casa Baratheon
+🪄 [2] - Casa Chema
+🪄 [3] - Casa Lannister
+🪄 [4] - Casa Stark
+🪄 [5] - Casa Tyrell
+🪄 [6] - Casa Velaryon
+🪄 [7] - Cruz
+
+🔮 ¡Selecciona el número de la casa que deseas leer! (Elige sabiamente): 3
+
+📜 Archivos de la casa:
+📝 [1] - Conquistado.txt
+📝 [2] - Lema.txt
+📝 [3] - Nombre de bastardo.txt
+📝 [4] - Región.txt
+📝 [5] - Señor.txt
+🛑 [0] - Volver al menú principal
+
+✨ ¡Elige el número del archivo que deseas leer! (Escoge con sabiduría, o elige 0 para volver): 4
+
+🗑️ ¡El archivo 'Región.txt' ha sido eliminado con éxito!
+
+🌟 Escribe 'V' para volver al menú principal y seguir con la aventura: v
+
+--- 🏰 Menú Principal de Poniente ---
+1. Leer información de una casa 🏠
+2. Crear un archivo con información de una casa 📄
+3. Crear una nueva casa 🏰
+4. Eliminar un archivo de una casa 🗑️
+5. Eliminar una casa 🏚️
+6. Salir 🚪
+
+Elige tu destino, noble aventurero (1-6): 5
+
+🏠 Casas de Poniente:
+🪄 [1] - Casa Baratheon
+🪄 [2] - Casa Chema
+🪄 [3] - Casa Lannister
+🪄 [4] - Casa Stark
+🪄 [5] - Casa Tyrell
+🪄 [6] - Casa Velaryon
+🪄 [7] - Cruz
+
+🔮 ¡Selecciona el número de la casa que deseas leer! (Elige sabiamente): 5
+
+🏚️ ¡La casa 'Casa Tyrell' ha sido eliminada del reino de Poniente!
+
+🌟 Escribe 'V' para volver al menú principal y seguir con la aventura: v
+
+--- 🏰 Menú Principal de Poniente ---
+1. Leer información de una casa 🏠
+2. Crear un archivo con información de una casa 📄
+3. Crear una nueva casa 🏰
+4. Eliminar un archivo de una casa 🗑️
+5. Eliminar una casa 🏚️
+6. Salir 🚪
+
+Elige tu destino, noble aventurero (1-6): 6
+
+🌟 ¡Que los Siete te guíen en tu camino! Adiós, noble aventurero.
+
+Process finished with exit code 0
