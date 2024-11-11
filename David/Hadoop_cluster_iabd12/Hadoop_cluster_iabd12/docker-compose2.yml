@@ -53,3 +53,5 @@ services:
       - namenode
     networks:
       - hadoop-net
+    volumes:
+      - /c/Users/IABD12/Documents/GitHub/ClaseIABD:/home/hdadmin/work

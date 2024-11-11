@@ -1,0 +1,19 @@
+version: '3'
+services:
+  pyspark-hadoop:
+    build: .
+    container_name: pyspark_hadoop
+    ports:
+      - "8888:8888"  # Exponer el puerto para Jupyter
+    volumes:
+      - C:/Users/IABD12/Documents/GitHub:/workspace   # Montar la carpeta local en /workspace
+    environment:
+      - HADOOP_HOME=/opt/hadoop
+      - SPARK_HOME=/opt/spark
+      - HADOOP_CONF_DIR=/opt/hadoop/etc/hadoop
+      - PYSPARK_PYTHON=python3
+      - PYSPARK_DRIVER_PYTHON=jupyter
+      - PYSPARK_DRIVER_PYTHON_OPTS="notebook"
+    stdin_open: true
+    tty: true
+    command: ["jupyter", "notebook", "--ip=0.0.0.0", "--no-browser", "--allow-root", "--NotebookApp.token=''"]
