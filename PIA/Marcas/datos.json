@@ -1,0 +1,31 @@
+{
+    "intents":[
+        {
+            "tag": "saludos",
+            "paterns": [
+                "hola",
+                "buenos dias",
+                "hey",
+                "holi"
+            ],
+            "responses":[
+                "Heeeeeeeeyyyyyyy, muyyyy buenas a todossss guaaaaaapisimoooooooos, aquiiii Vegettaaaaa 777, en nuevo capitulo de apocalipsis minecraft",
+                "¡Buenos dias, cabras mías!"
+            ]
+        },
+        {
+            "tag": "despedida",
+            "paterns": [
+                "adios",
+                "hasta luego",
+                "hasta pronto",
+                "chao"
+            ],
+            "responses": [
+                "Ya era hora. Adios",
+                "a"
+            ]
+        }
+        
+    ]
+}
