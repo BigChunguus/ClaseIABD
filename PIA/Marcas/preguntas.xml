@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faqs>
+    <pregunta id="1">
+        <texto>¿Qué tipos de kebabs ofrecen?</texto>
+        <respuesta>Ofrecemos döner kebab, dürüm, kebab en plato y amor eterno en forma de pan pita.</respuesta>
+    </pregunta>
+    <pregunta id="2">
+        <texto>¿Cuáles son los horarios de apertura?</texto>
+        <respuesta>Abrimos todos los días de 6:00 a 5:59. Así que puedes venir cuando el hambre te ataque.</respuesta>
+    </pregunta>
+    <pregunta id="3">
+        <texto>¿Ofrecen opciones vegetarianas?</texto>
+        <respuesta>¡Claro que sí! Tenemos falafel y ensaladas para los amantes de las plantas.</respuesta>
+    </pregunta>
+    <pregunta id="4">
+        <texto>¿Hacen entregas a domicilio?</texto>
+        <respuesta>¡Sí! Enviamos kebabs en alfombra voladora (bueno, en moto) a través de UberEats, Glovo y Just Eat.</respuesta>
+    </pregunta>
+    <pregunta id="5">
+        <texto>¿Cuál es la salsa más recomendada para el kebab?</texto>
+        <respuesta>Tenemos salsa roja pero recomendamos la salsa misteriosa.</respuesta>
+    </pregunta>
+</faqs>

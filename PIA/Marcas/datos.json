@@ -2,7 +2,7 @@
     "intents":[
         {
             "tag": "saludos",
-            "paterns": [
+            "patterns": [
                 "hola",
                 "buenos dias",
                 "hey",
@@ -15,7 +15,7 @@
         },
         {
             "tag": "despedida",
-            "paterns": [
+            "patterns": [
                 "adios",
                 "hasta luego",
                 "hasta pronto",
