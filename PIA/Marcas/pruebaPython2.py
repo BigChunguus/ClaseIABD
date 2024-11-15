@@ -2,7 +2,7 @@ import tkinter as tk
 
 # Configuración de la ventana principal
 window = tk.Tk()
-window.title("Chatbot con Widgets Simulados con Degradado")
+window.title("Chatbot con Widgets Simulados")
 window.geometry("525x425")
 
 # Crear un canvas para dibujar el degradado de fondo de la ventana
