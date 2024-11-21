@@ -1,0 +1,19 @@
+{
+  "intents": [
+    {
+      "tag": "saludo",
+      "patterns": ["hola", "buenos días", "buenas tardes"],
+      "responses": ["¡Hola! ¿En qué puedo ayudarte?", "¡Buen día! ¿Cómo te ayudo?"]
+    },
+    {
+      "tag": "despedida",
+      "patterns": ["adiós", "hasta luego", "nos vemos"],
+      "responses": ["¡Hasta pronto!", "¡Cuídate mucho!"]
+    },
+    {
+      "tag": "pregunta_producto",
+      "patterns": ["¿Qué productos tienes?", "ofertas disponibles"],
+      "responses": ["Tenemos productos increíbles. ¡Revisa nuestra página web!"]
+    }
+  ]
+}
