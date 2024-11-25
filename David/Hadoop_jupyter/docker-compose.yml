@@ -4,9 +4,9 @@ services:
     build: .
     container_name: pyspark_hadoop
     ports:
-      - "8888:8888"  # Exponer el puerto para Jupyter
+      - "8888:8888"  
     volumes:
-      - C:/Users/IABD12/Documents/GitHub:/workspace   # Montar la carpeta local en /workspace
+      - C:/Users/IABD12/Documents/GitHub:/workspace   
     environment:
       - HADOOP_HOME=/opt/hadoop
       - SPARK_HOME=/opt/spark

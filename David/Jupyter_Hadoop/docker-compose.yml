@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  namenode:
+    build: .
+    container_name: namenode
+    ports:
+      - "9870:9870"
+      - "9000:9000"
+    volumes:
+      - ./configs:/opt/hadoop/etc/hadoop
+    networks:
+      - hadoop_network
+
+  datanode1:
+    build: .
+    container_name: datanode1
+    networks:
+      - hadoop_network
+
+  datanode2:
+    build: .
+    container_name: datanode2
+    networks:
+      - hadoop_network
+
+  jupyter:
+    image: jupyter/base-notebook
+    container_name: jupyter
+    ports:
+      - "8888:8888"
+    networks:
+      - hadoop_network
+    depends_on:
+      - namenode
+
+networks:
+  hadoop_network:
+    driver: bridge

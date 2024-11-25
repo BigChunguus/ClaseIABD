@@ -1,0 +1,10 @@
+FROM jupyter/base-notebook
+
+# Instalar las dependencias necesarias para interactuar con HDFS
+RUN pip install hdfs pyarrow
+
+# Copiar el script de inicio de Jupyter
+COPY start.sh /usr/local/bin/start.sh
+
+# Iniciar Jupyter Notebook en el puerto 8888
+CMD ["start.sh"]

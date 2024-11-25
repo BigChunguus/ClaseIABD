@@ -1,0 +1,25 @@
+FROM openjdk:11-jre-slim
+
+# Variables de entorno
+ENV HADOOP_VERSION=3.3.6
+ENV HADOOP_HOME=/opt/hadoop
+ENV PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
+
+# Instalar Hadoop
+RUN apt-get update && apt-get install -y wget ssh && \
+    wget https://dlcdn.apache.org/hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}.tar.gz && \
+    tar -xvzf hadoop-${HADOOP_VERSION}.tar.gz -C /opt/ && \
+    mv /opt/hadoop-${HADOOP_VERSION} /opt/hadoop && \
+    rm hadoop-${HADOOP_VERSION}.tar.gz && \
+    apt-get clean
+
+# Configurar SSH para Hadoop
+RUN ssh-keygen -t rsa -P "" -f ~/.ssh/id_rsa && \
+    cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys && \
+    chmod 0600 ~/.ssh/authorized_keys
+
+# Puerto de comunicación
+EXPOSE 9870 9000 50070 50075 8042 8088
+
+# Comando de inicio
+CMD ["/bin/bash"]

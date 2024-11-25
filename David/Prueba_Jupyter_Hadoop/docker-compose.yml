@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  namenode:
+    build:
+      context: ./hadoop
+    container_name: namenode
+    ports:
+      - "50070:50070"  # Interfaz web de HDFS
+      - "9000:9000"    # Puerto HDFS
+    networks:
+      - hadoop_network
+    volumes:
+      - hadoop_namenode_data:/hadoop/dfs/name
+
+  datanode:
+    build:
+      context: ./hadoop
+    container_name: datanode
+    depends_on:
+      - namenode
+    networks:
+      - hadoop_network
+    volumes:
+      - hadoop_datanode_data:/hadoop/dfs/data
+
+  jupyter:
+    build:
+      context: ./jupyter
+    container_name: jupyter
+    depends_on:
+      - namenode
+    ports:
+      - "8888:8888"  # Puerto Jupyter Notebook
+    networks:
+      - hadoop_network
+
+networks:
+  hadoop_network:
+    driver: bridge
+
+volumes:
+  hadoop_namenode_data:
+  hadoop_datanode_data:

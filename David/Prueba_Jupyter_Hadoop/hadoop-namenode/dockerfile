@@ -1,0 +1,10 @@
+# Usar una imagen base de Hadoop
+FROM sequenceiq/hadoop-docker:2.7.1
+
+# Copiar archivos de configuración personalizados
+COPY config/core-site.xml /etc/hadoop/core-site.xml
+COPY config/hdfs-site.xml /etc/hadoop/hdfs-site.xml
+COPY config/yarn-site.xml /etc/hadoop/yarn-site.xml
+
+# Comando para iniciar Hadoop: formatear el NameNode y luego iniciar los servicios
+CMD /bin/bash -c "hdfs namenode -format && start-dfs.sh && start-yarn.sh && tail -f /dev/null"
