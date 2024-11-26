@@ -1,0 +1,59 @@
+version: '3.1'
+
+networks:
+  hadoop-net:
+    driver: bridge
+
+services:
+  namenode:
+    build: ./NameNode
+    image: hadoop-namenode-image-iabd11:latest
+    container_name: namenode
+    hostname: namenode
+    command: /opt/bd/start-daemons.sh
+    ports:
+      - "9870:9870"
+    networks:
+      - hadoop-net
+    volumes:
+      - /c/mi_datos:/home
+
+  resourcemanager:
+    build: ./ResourceManager
+    image: hadoop-resourcemanager-image-iabd11:latest
+    container_name: resourcemanager
+    hostname: resourcemanager
+    command: /opt/bd/start-daemons.sh
+    ports:
+      - "8088:8088"
+    networks:
+      - hadoop-net
+    volumes:
+      - /c/mi_datos:/home
+
+  dnnm:
+    build: ./DataNode-NodeManager
+    image: hadoop-datanode-image-iabd11:latest
+    container_name: datanode
+    hostname: datanode
+    ports:
+      - "9866:9866"
+      - "9864:9864"
+    depends_on:
+      - namenode
+      - resourcemanager
+    command: /opt/bd/start-daemons.sh
+    networks:
+      - hadoop-net
+
+  jupyter:
+    build: ./Jupyter
+    image: jupyter-hadoop-image:latest
+    container_name: jupyter
+    hostname: jupyter
+    ports:
+      - "8888:8888" 
+    networks:
+      - hadoop-net
+    volumes:
+      - /c/mi_datos:/opt/bd/jupyter-data
