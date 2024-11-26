@@ -9,12 +9,16 @@ from difflib import get_close_matches
 
 CARPETA_BASE = os.path.dirname(os.path.abspath(__file__))
 
+# Método que carga los datos de intents desde un archivo JSON ubicado en la carpeta base.
+# Devuelve un diccionario con los intents y sus respuestas.
 def cargar_intents():
     
     intents_path = os.path.join(CARPETA_BASE, "intents.json")
     with open(intents_path, "r", encoding="utf-8") as file:
         return json.load(file)
 
+# Método que busca coincidencias entre el mensaje del usuario y los patrones definidos en el archivo JSON.
+# Si encuentra coincidencias, devuelve una respuesta aleatoria asociada; de lo contrario, devuelve None.
 def obtener_respuesta(mensaje_usuario):
     patrones = []
     respuestas = {}
@@ -31,6 +35,9 @@ def obtener_respuesta(mensaje_usuario):
     else:
         return random.choice(respuestas[coincidencias[0]])
 
+# Método para agregar un nuevo intent al archivo JSON.
+# Recibe el mensaje del usuario y una respuesta, los añade al archivo y actualiza el diccionario en memoria.
+# Guarda los cambios en el archivo JSON.
 def agregar_nuevo_intent(mensaje_usuario, nueva_respuesta):
     nuevo_intent = {
         "tag": f"nuevo_{len(datos_json['intents']) + 1}",
@@ -45,6 +52,9 @@ def agregar_nuevo_intent(mensaje_usuario, nueva_respuesta):
 
     print("Nuevo intent agregado al JSON")
 
+# Método que maneja el flujo del chat cuando el usuario envía un mensaje.
+# Busca una respuesta del bot o, si no la encuentra, pide al usuario que enseñe una nueva respuesta.
+# También alterna la imagen mostrada en la interfaz.
 def enviar_mensaje():
     mensaje_usuario = entry_mensaje.get()
     if not mensaje_usuario.strip():
@@ -65,16 +75,22 @@ def enviar_mensaje():
 
     alternar_imagen()
 
+# Cambia dinámicamente la imagen mostrada en la interfaz por la siguiente de la lista.
+# Las imágenes se recorren en un ciclo continuo.
 def alternar_imagen():
     global indice_imagen
     indice_imagen = (indice_imagen + 1) % len(imagenes)
     label_imagen.config(image=imagenes[indice_imagen])
 
+# Método que carga una imagen desde una ruta específica y la redimensiona a las dimensiones dadas.
+# Utiliza la biblioteca PIL para manipular las imágenes.
 def cargar_imagen(path, ancho, alto):
     imagen = Image.open(path)
-    imagen = imagen.resize((ancho, alto), Image.Resampling.LANCZOS)  # Redimensionar
+    imagen = imagen.resize((ancho, alto), Image.Resampling.LANCZOS)  
     return ImageTk.PhotoImage(imagen)
 
+# Busca y devuelve una lista de rutas de imágenes en un directorio específico.
+# Filtra solo los archivos con extensiones válidas (.png, .jpg).
 def obtener_imagenes_dinamicamente(directorio):
     
     extensiones_validas = ('.png', '.jpg')
@@ -87,6 +103,8 @@ def obtener_imagenes_dinamicamente(directorio):
 datos_json = cargar_intents()
 indice_imagen = 0
 
+# Configuración inicial de la interfaz gráfica del usuario (GUI) con Tkinter.
+# Define el tamaño de la ventana, widgets de entrada, área de chat, botón de enviar, y espacio para imágenes.
 ventana = tk.Tk()
 ventana.title("ChatBot - Modernizando el Barrio")
 ventana.geometry("500x600")

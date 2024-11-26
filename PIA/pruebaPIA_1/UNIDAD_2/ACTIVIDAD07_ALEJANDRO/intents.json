@@ -1,114 +1,171 @@
 {
-  "intents": [
-    {
-      "tag": "saludo",
-      "patterns": [
-        "hola", "buenos días", "buenas tardes", "hey", "hello", "qué tal", 
-        "cómo estás", "holi", "saludos", "qué onda", "hola, ¿cómo estás?"
-      ],
-      "responses": [
-        "¡Hola! ¿En qué puedo ayudarte?", "¡Buen día! ¿Cómo te ayudo?", 
-        "¡Hola! ¿Cómo estás hoy?", "¡Saludos! ¿Qué necesitas?", 
-        "Hola, encantado de verte por aquí"
-      ]
-    },
-    {
-      "tag": "despedida",
-      "patterns": [
-        "adiós", "hasta luego", "nos vemos", "chao", "bye", "me voy", 
-        "hasta pronto", "cuídate", "nos vemos luego", "me despido"
-      ],
-      "responses": [
-        "¡Hasta pronto!", "¡Cuídate mucho!", "Adiós, que tengas un buen día", 
-        "Nos vemos pronto", "¡Gracias por visitarnos! ¡Hasta luego!"
-      ]
-    },
-    {
-      "tag": "pregunta_producto",
-      "patterns": [
-        "¿Qué productos tienes?", "ofertas disponibles", "¿qué vendes?", 
-        "productos en venta", "dime tus productos", "¿tienes ofertas?",
-        "¿qué hay para comprar?", "cuéntame de tus productos", 
-        "¿qué puedo encontrar aquí?", "cosas en venta"
-      ],
-      "responses": [
-        "Tenemos productos increíbles. ¡Revisa nuestra página web!", 
-        "Ofrecemos una variedad de productos. ¿Buscas algo en específico?", 
-        "¡Hay muchas opciones disponibles! Dime qué necesitas.", 
-        "Nuestros productos son de la mejor calidad. ¿Te interesa algo en particular?", 
-        "Explora nuestras ofertas especiales en el sitio web."
-      ]
-    },
-    {
-      "tag": "agradecimiento",
-      "patterns": [
-        "gracias", "muchas gracias", "te lo agradezco", "mil gracias", 
-        "gracias por tu ayuda", "muy amable", "gracias, eso es todo"
-      ],
-      "responses": [
-        "¡De nada! Estoy aquí para ayudarte.", "No hay de qué, es un placer ayudar.", 
-        "¡Gracias a ti! ¿Necesitas algo más?", "Siempre encantado de ayudarte.", 
-        "No te preocupes, estoy para eso."
-      ]
-    },
-    {
-      "tag": "ayuda",
-      "patterns": [
-        "necesito ayuda", "¿puedes ayudarme?", "ayúdame", "auxilio", 
-        "me puedes ayudar", "quiero información", "me puedes orientar", 
-        "necesito orientación", "ayuda por favor", "¿qué hago?"
-      ],
-      "responses": [
-        "¡Claro que sí! Dime cómo puedo ayudarte.", 
-        "Estoy aquí para lo que necesites, dime más detalles.", 
-        "Por supuesto, ¿en qué necesitas ayuda?", 
-        "Dime cómo puedo asistirte y lo haré.", 
-        "¿Qué necesitas? Estoy listo para ayudarte."
-      ]
-    },
-    {
-      "tag": "ubicacion",
-      "patterns": [
-        "¿dónde están?", "ubicación de su tienda", "dirección", 
-        "¿dónde los encuentro?", "¿dónde se encuentran ubicados?", 
-        "mapa de su tienda", "¿cómo llego a ustedes?", 
-        "quiero visitar su tienda", "localización"
-      ],
-      "responses": [
-        "Estamos en el centro de la ciudad. Consulta el mapa en nuestra página para más detalles.", 
-        "Puedes encontrarnos en la siguiente dirección: Calle Principal #123.", 
-        "Nuestro local está ubicado en Avenida Las Palmas, consulta en línea para más referencias.", 
-        "Estamos ubicados en el corazón de la ciudad, ¡ven a visitarnos!"
-      ]
-    },
-    {
-      "tag": "horarios",
-      "patterns": [
-        "¿cuáles son sus horarios?", "horarios de atención", 
-        "¿cuándo abren?", "horas de trabajo", "¿a qué hora están abiertos?", 
-        "horario de su tienda", "¿hasta qué hora están abiertos?", 
-        "¿cuánto tiempo están abiertos?"
-      ],
-      "responses": [
-        "Estamos abiertos de lunes a sábado de 9:00 AM a 8:00 PM.", 
-        "Nuestro horario es de 9:00 AM a 8:00 PM, de lunes a sábado.", 
-        "Puedes visitarnos de 9:00 AM a 8:00 PM. ¡Te esperamos!", 
-        "Abrimos de lunes a sábado. ¿Te gustaría saber más detalles?"
-      ]
-    },
-    {
-      "tag": "precio",
-      "patterns": [
-        "¿cuánto cuesta?", "precio de los productos", "¿qué precio tiene?", 
-        "¿cuánto vale?", "costos de los productos", "precio de algo", 
-        "dime los precios", "¿me puedes dar un precio?", "quiero saber los costos"
-      ],
-      "responses": [
-        "Nuestros precios son competitivos. ¿Qué producto específico te interesa?", 
-        "Los precios varían según el producto. Consulta nuestra web para más detalles.", 
-        "Dime qué necesitas y te diré el precio.", 
-        "Consulta nuestra lista de productos para ver los precios actualizados."
-      ]
-    }
-  ]
+    "intents": [
+        {
+            "tag": "saludo",
+            "patterns": [
+                "hola",
+                "buenos días",
+                "buenas tardes",
+                "hey",
+                "hello",
+                "qué tal",
+                "cómo estás",
+                "holi",
+                "saludos",
+                "qué onda",
+                "hola, ¿cómo estás?"
+            ],
+            "responses": [
+                "¡Hola! ¿En qué puedo ayudarte?",
+                "¡Buen día! ¿Cómo te ayudo?",
+                "¡Hola! ¿Cómo estás hoy?",
+                "¡Saludos! ¿Qué necesitas?",
+                "Hola, encantado de verte por aquí"
+            ]
+        },
+        {
+            "tag": "despedida",
+            "patterns": [
+                "adiós",
+                "hasta luego",
+                "nos vemos",
+                "chao",
+                "bye",
+                "me voy",
+                "hasta pronto",
+                "cuídate",
+                "nos vemos luego",
+                "me despido"
+            ],
+            "responses": [
+                "¡Hasta pronto!",
+                "¡Cuídate mucho!",
+                "Adiós, que tengas un buen día",
+                "Nos vemos pronto",
+                "¡Gracias por visitarnos! ¡Hasta luego!"
+            ]
+        },
+        {
+            "tag": "pregunta_producto",
+            "patterns": [
+                "¿Qué productos tienes?",
+                "ofertas disponibles",
+                "¿qué vendes?",
+                "productos en venta",
+                "dime tus productos",
+                "¿tienes ofertas?",
+                "¿qué hay para comprar?",
+                "cuéntame de tus productos",
+                "¿qué puedo encontrar aquí?",
+                "cosas en venta"
+            ],
+            "responses": [
+                "Tenemos productos increíbles. ¡Revisa nuestra página web!",
+                "Ofrecemos una variedad de productos. ¿Buscas algo en específico?",
+                "¡Hay muchas opciones disponibles! Dime qué necesitas.",
+                "Nuestros productos son de la mejor calidad. ¿Te interesa algo en particular?",
+                "Explora nuestras ofertas especiales en el sitio web."
+            ]
+        },
+        {
+            "tag": "agradecimiento",
+            "patterns": [
+                "gracias",
+                "muchas gracias",
+                "te lo agradezco",
+                "mil gracias",
+                "gracias por tu ayuda",
+                "muy amable",
+                "gracias, eso es todo"
+            ],
+            "responses": [
+                "¡De nada! Estoy aquí para ayudarte.",
+                "No hay de qué, es un placer ayudar.",
+                "¡Gracias a ti! ¿Necesitas algo más?",
+                "Siempre encantado de ayudarte.",
+                "No te preocupes, estoy para eso."
+            ]
+        },
+        {
+            "tag": "ayuda",
+            "patterns": [
+                "necesito ayuda",
+                "¿puedes ayudarme?",
+                "ayúdame",
+                "auxilio",
+                "me puedes ayudar",
+                "quiero información",
+                "me puedes orientar",
+                "necesito orientación",
+                "ayuda por favor",
+                "¿qué hago?"
+            ],
+            "responses": [
+                "¡Claro que sí! Dime cómo puedo ayudarte.",
+                "Estoy aquí para lo que necesites, dime más detalles.",
+                "Por supuesto, ¿en qué necesitas ayuda?",
+                "Dime cómo puedo asistirte y lo haré.",
+                "¿Qué necesitas? Estoy listo para ayudarte."
+            ]
+        },
+        {
+            "tag": "ubicacion",
+            "patterns": [
+                "¿dónde están?",
+                "ubicación de su tienda",
+                "dirección",
+                "¿dónde los encuentro?",
+                "¿dónde se encuentran ubicados?",
+                "mapa de su tienda",
+                "¿cómo llego a ustedes?",
+                "quiero visitar su tienda",
+                "localización"
+            ],
+            "responses": [
+                "Estamos en el centro de la ciudad. Consulta el mapa en nuestra página para más detalles.",
+                "Puedes encontrarnos en la siguiente dirección: Calle Principal #123.",
+                "Nuestro local está ubicado en Avenida Las Palmas, consulta en línea para más referencias.",
+                "Estamos ubicados en el corazón de la ciudad, ¡ven a visitarnos!"
+            ]
+        },
+        {
+            "tag": "horarios",
+            "patterns": [
+                "¿cuáles son sus horarios?",
+                "horarios de atención",
+                "¿cuándo abren?",
+                "horas de trabajo",
+                "¿a qué hora están abiertos?",
+                "horario de su tienda",
+                "¿hasta qué hora están abiertos?",
+                "¿cuánto tiempo están abiertos?"
+            ],
+            "responses": [
+                "Estamos abiertos de lunes a sábado de 9:00 AM a 8:00 PM.",
+                "Nuestro horario es de 9:00 AM a 8:00 PM, de lunes a sábado.",
+                "Puedes visitarnos de 9:00 AM a 8:00 PM. ¡Te esperamos!",
+                "Abrimos de lunes a sábado. ¿Te gustaría saber más detalles?"
+            ]
+        },
+        {
+            "tag": "precio",
+            "patterns": [
+                "¿cuánto cuesta?",
+                "precio de los productos",
+                "¿qué precio tiene?",
+                "¿cuánto vale?",
+                "costos de los productos",
+                "precio de algo",
+                "dime los precios",
+                "¿me puedes dar un precio?",
+                "quiero saber los costos"
+            ],
+            "responses": [
+                "Nuestros precios son competitivos. ¿Qué producto específico te interesa?",
+                "Los precios varían según el producto. Consulta nuestra web para más detalles.",
+                "Dime qué necesitas y te diré el precio.",
+                "Consulta nuestra lista de productos para ver los precios actualizados."
+            ]
+        }
+    ]
 }
