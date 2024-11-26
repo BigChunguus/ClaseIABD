@@ -1,12 +1,18 @@
 import tkinter as tk
 from tkinter import simpledialog, messagebox
 from tkinter.scrolledtext import ScrolledText
+from PIL import Image, ImageTk
 import random
 import json
+import os
 from difflib import get_close_matches
 
+CARPETA_BASE = os.path.dirname(os.path.abspath(__file__))
+
 def cargar_intents():
-    with open("PIA/pruebaPIA_1/UNIDAD_2/intents.json", "r", encoding="utf-8") as file:
+    
+    intents_path = os.path.join(CARPETA_BASE, "intents.json")
+    with open(intents_path, "r", encoding="utf-8") as file:
         return json.load(file)
 
 def obtener_respuesta(mensaje_usuario):
@@ -33,7 +39,8 @@ def agregar_nuevo_intent(mensaje_usuario, nueva_respuesta):
     }
     datos_json["intents"].append(nuevo_intent)
 
-    with open("intents.json", "w", encoding="utf-8") as file:
+    intents_path = os.path.join(CARPETA_BASE, "intents.json")
+    with open(intents_path, "w", encoding="utf-8") as file:
         json.dump(datos_json, file, indent=4, ensure_ascii=False)
 
     print("Nuevo intent agregado al JSON")
@@ -63,20 +70,34 @@ def alternar_imagen():
     indice_imagen = (indice_imagen + 1) % len(imagenes)
     label_imagen.config(image=imagenes[indice_imagen])
 
+def cargar_imagen(path, ancho, alto):
+    imagen = Image.open(path)
+    imagen = imagen.resize((ancho, alto), Image.Resampling.LANCZOS)  # Redimensionar
+    return ImageTk.PhotoImage(imagen)
+
+def obtener_imagenes_dinamicamente(directorio):
+    
+    extensiones_validas = ('.png', '.jpg')
+    return [
+        os.path.join(directorio, archivo)
+        for archivo in os.listdir(directorio)
+        if archivo.lower().endswith(extensiones_validas)
+    ]
+
 datos_json = cargar_intents()
 indice_imagen = 0
-
-# Cargar las imágenes de manera estática dentro de un array
-imagenes = [
-    tk.PhotoImage(file="img/hamburguesa1.png"),
-    tk.PhotoImage(file="img/hamburguesa2.png"),
-    tk.PhotoImage(file="img/hamburguesa3.png"),
-    tk.PhotoImage(file="img/hamburguesa4.png")
-]
 
 ventana = tk.Tk()
 ventana.title("ChatBot - Modernizando el Barrio")
 ventana.geometry("500x600")
+
+ancho_imagen = 200
+alto_imagen = 200
+
+img_dir = os.path.join(CARPETA_BASE, "img")
+imagenes_rutas = obtener_imagenes_dinamicamente(img_dir)
+
+imagenes = [cargar_imagen(ruta, ancho_imagen, alto_imagen) for ruta in imagenes_rutas]
 
 area_chat = ScrolledText(ventana, wrap=tk.WORD, height=20, width=50)
 area_chat.pack(pady=10)
@@ -87,7 +108,7 @@ entry_mensaje.pack(pady=5)
 boton_enviar = tk.Button(ventana, text="Enviar", command=enviar_mensaje)
 boton_enviar.pack(pady=5)
 
-label_imagen = tk.Label(ventana, image=imagenes[indice_imagen])  # Imagen inicial
+label_imagen = tk.Label(ventana, image=imagenes[indice_imagen], width=ancho_imagen, height=alto_imagen)
 label_imagen.pack(pady=10)
 
 ventana.mainloop()
