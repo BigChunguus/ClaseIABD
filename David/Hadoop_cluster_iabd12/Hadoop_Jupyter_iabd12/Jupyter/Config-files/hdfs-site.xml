@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <property>
+    <name>dfs.replication</name>
+    <value>3</value>
+    <description>El número de réplicas de cada bloque en HDFS.</description>
+  </property>
+  <property>
+    <name>dfs.namenode.name.dir</name>
+    <value>file:///opt/bd/hadoop/hdfs/namenode</value>
+    <description>Directorio local donde el NameNode guarda los metadatos del sistema de archivos.</description>
+  </property>
+  <property>
+    <name>dfs.datanode.data.dir</name>
+    <value>file:///opt/bd/hadoop/hdfs/datanode</value>
+    <description>Directorio local donde los DataNodes almacenan los bloques de datos.</description>
+  </property>
+  <property>
+    <name>dfs.namenode.http-address</name>
+    <value>namenode:9870</value>
+    <description>Dirección y puerto donde el NameNode escucha para la interfaz web.</description>
+  </property>
+</configuration>

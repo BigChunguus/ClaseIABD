@@ -1,3 +1,4 @@
+# Alejandro Cruz y Miguel
 import tkinter as tk
 from tkinter import simpledialog, messagebox
 from tkinter.scrolledtext import ScrolledText
