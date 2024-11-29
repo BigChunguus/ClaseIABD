@@ -21,7 +21,7 @@ RUN echo "$LOG_TAG Instalando Python, pip y dependencias adicionales" && \
 # Crea un entorno virtual e instala Jupyter y otras bibliotecas
 RUN python3 -m venv ${VENV_DIR} && \
     ${VENV_DIR}/bin/pip install --upgrade pip && \
-    ${VENV_DIR}/bin/pip install jupyter pyspark numpy pandas matplotlib seaborn
+    ${VENV_DIR}/bin/pip install jupyter pyspark numpy pandas matplotlib seaborn hdfs
 
 # Copia los archivos de configuración de Hadoop (asegurate que los archivos estén correctamente ubicados)
 COPY ./Config-files/core-site.xml ${HADOOP_CONF_DIR}/core-site.xml
