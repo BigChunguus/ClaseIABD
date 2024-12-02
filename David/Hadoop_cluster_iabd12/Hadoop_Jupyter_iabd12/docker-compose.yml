@@ -7,8 +7,8 @@ networks:
 services:
   namenode:
     build: ./NameNode
-    image: hadoop-namenode-image-iabd12:latest
-    container_name: namenode
+    image: bigchuungus/hadoop-namenode-image-iabd12:v2.0
+    container_name: namenode2
     hostname: namenode
     command: /opt/bd/start-daemons.sh
     ports:
@@ -21,8 +21,8 @@ services:
 
   resourcemanager:
     build: ./ResourceManager
-    image: hadoop-resourcemanager-image-iabd12:latest
-    container_name: resourcemanager
+    image: bigchuungus/hadoop-resourcemanager-image-iabd12:v2.0
+    container_name: resourcemanager2
     hostname: resourcemanager
     command: /opt/bd/start-daemons.sh
     ports:
@@ -34,8 +34,8 @@ services:
 
   dnnm:
     build: ./DataNode-NodeManager
-    image: hadoop-datanode-image-iabd12:latest
-    container_name: datanode
+    image: bigchuungus/hadoop-datanode-image-iabd12:v2.0
+    container_name: datanode2
     hostname: datanode
     command: /opt/bd/start-daemons.sh
     ports:
@@ -49,8 +49,8 @@ services:
 
   jupyter:
     build: ./Jupyter
-    image: hadoop-jupyter-image-iabd12:latest
-    container_name: jupyter
+    image: bigchuungus/hadoop-jupyter-image-iabd12:v2.0
+    container_name: jupyter2
     hostname: jupyter
     ports:
       - "8888:8888"  # Puerto para Jupyter Notebook
