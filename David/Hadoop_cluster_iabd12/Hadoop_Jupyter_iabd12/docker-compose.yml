@@ -1,46 +1,41 @@
-version: '3.1'
-
 networks:
   hadoop-net:
     driver: bridge
 
 services:
   namenode:
-    build: ./NameNode
     image: bigchuungus/hadoop-namenode-image-iabd12:v2.0
     container_name: namenode2
     hostname: namenode
     command: /opt/bd/start-daemons.sh
     ports:
-      - "9870:9870"   # Web UI de HDFS
-      - "9000:9000"   # RPC del NameNode
+      - "9870:9870"   
+      - "9000:9000"   
     networks:
       - hadoop-net
     volumes:
-      - /c/Users/IABD12/Documents/GitHub/ClaseIABD/David:/home  # Ruta montada
+      - "${USER_PATH}/Documents/GitHub/ClaseIABD/David:/home"  
 
   resourcemanager:
-    build: ./ResourceManager
     image: bigchuungus/hadoop-resourcemanager-image-iabd12:v2.0
     container_name: resourcemanager2
     hostname: resourcemanager
     command: /opt/bd/start-daemons.sh
     ports:
-      - "8088:8088"   # Web UI del ResourceManager
+      - "8088:8088"   
     networks:
       - hadoop-net
     volumes:
-      - /c/Users/IABD12/Documents/GitHub/ClaseIABD/David:/home  # Ruta montada
+      - "${USER_PATH}/Documents/GitHub/ClaseIABD/David:/home"  
 
   dnnm:
-    build: ./DataNode-NodeManager
     image: bigchuungus/hadoop-datanode-image-iabd12:v2.0
     container_name: datanode2
     hostname: datanode
     command: /opt/bd/start-daemons.sh
     ports:
-      - "9866:9866"  # Web UI del DataNode
-      - "9864:9864"  # Bloques de datos
+      - "9866:9866"  
+      - "9864:9864"  
     depends_on:
       - namenode
       - resourcemanager
@@ -48,15 +43,14 @@ services:
       - hadoop-net
 
   jupyter:
-    build: ./Jupyter
     image: bigchuungus/hadoop-jupyter-image-iabd12:v2.0
     container_name: jupyter2
     hostname: jupyter
     ports:
-      - "8888:8888"  # Puerto para Jupyter Notebook
+      - "8888:8888"  
     networks:
       - hadoop-net
     volumes:
-      - /c/Users/IABD12/Documents/GitHub/ClaseIABD/David:/opt/bd/jupyter-data  # Datos accesibles desde Jupyter
+      - "${USER_PATH}/Documents/GitHub/ClaseIABD/David:/opt/bd/jupyter-data"  
     environment:
-      JUPYTER_ENABLE_LAB: "yes"  # Activa JupyterLab
+      JUPYTER_ENABLE_LAB: "yes"  
