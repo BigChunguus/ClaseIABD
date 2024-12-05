@@ -1,0 +1,29 @@
+{
+    "equipos": [
+        {
+            "nombre": "Leones FC",
+            "participantes": ["Carlos Pérez", "Luis Gómez", "Andrés López"],
+            "foto": "RETO/img/img1.jpg"
+        },
+        {
+            "nombre": "Tigres United",
+            "participantes": ["José Díaz", "Miguel Torres", "Juan Herrera"],
+            "foto": "RETO/img/img2.jpg"
+        },
+        {
+            "nombre": "Águilas Doradas",
+            "participantes": ["Fernando Castro", "Raúl Martínez", "Iván Sánchez"],
+            "foto": "RETO/img/img3.jpg"
+        },
+        {
+            "nombre": "Panteras Negras",
+            "participantes": ["Daniel García", "Sergio López", "Manuel Vega"],
+            "foto": "RETO/img/img4.jpg"
+        },
+        {
+            "nombre": "Lobos del Norte",
+            "participantes": ["Jorge Ruiz", "Óscar Fernández", "Alberto Moreno"],
+            "foto": "RETO/img/img5.jpg"
+        }
+    ]
+}

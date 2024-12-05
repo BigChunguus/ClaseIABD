@@ -1,0 +1,124 @@
+{
+    "intents": [
+        {
+            "tag": "reglas_futsal",
+            "patterns": ["duración del partido"],
+            "responses": ["El partido dura 40 minutos divididos en dos tiempos de 20 minutos."]
+        },
+        {
+            "tag": "reglas_futsal",
+            "patterns": ["número de jugadores en el campo"],
+            "responses": ["Cada equipo tiene 5 jugadores en el campo, incluyendo al portero."]
+        },
+        {
+            "tag": "reglas_futsal",
+            "patterns": ["tamaño del balón"],
+            "responses": ["El balón debe ser de tamaño 4 y tener un rebote limitado."]
+        },
+        {
+            "tag": "reglas_futsal",
+            "patterns": ["dimensiones de la cancha"],
+            "responses": ["La cancha mide entre 25 y 42 metros de largo y entre 16 y 25 metros de ancho."]
+        },
+        {
+            "tag": "reglas_futsal",
+            "patterns": ["altura máxima del techo"],
+            "responses": ["La altura mínima recomendada del techo es de 4 metros."]
+        },
+        {
+            "tag": "reglas_futsal",
+            "patterns": ["duración de los tiempos muertos"],
+            "responses": ["Cada equipo dispone de un tiempo muerto de 1 minuto por período."]
+        },
+        {
+            "tag": "reglas_futsal",
+            "patterns": ["reglas del saque de banda"],
+            "responses": ["El saque de banda se realiza con el pie desde el lugar donde salió el balón."]
+        },
+        {
+            "tag": "reglas_futsal",
+            "patterns": ["reglas del saque de esquina"],
+            "responses": ["El saque de esquina se ejecuta con el pie desde la esquina correspondiente."]
+        },
+        {
+            "tag": "reglas_futsal",
+            "patterns": ["reglas del saque de meta"],
+            "responses": ["El saque de meta se realiza lanzando el balón con las manos desde el área."]
+        },
+        {
+            "tag": "reglas_futsal",
+            "patterns": ["número de cambios permitidos"],
+            "responses": ["Los cambios de jugadores son ilimitados y pueden hacerse en cualquier momento."]
+        },
+        {
+            "tag": "reglas_futsal",
+            "patterns": ["penalización por faltas acumuladas"],
+            "responses": ["A partir de la quinta falta acumulada, se concede un tiro libre sin barrera."]
+        },
+        {
+            "tag": "reglas_futsal",
+            "patterns": ["distancia mínima en tiros libres"],
+            "responses": ["La distancia mínima en tiros libres es de 5 metros."]
+        },
+        {
+            "tag": "reglas_futsal",
+            "patterns": ["uso de tarjetas amarilla y roja"],
+            "responses": ["Las tarjetas amarilla y roja se usan para sancionar conductas antideportivas."]
+        },
+        {
+            "tag": "reglas_futsal",
+            "patterns": ["duración de la exclusión por tarjeta roja"],
+            "responses": ["El jugador excluido por tarjeta roja no puede volver a jugar en ese partido."]
+        },
+        {
+            "tag": "reglas_futsal",
+            "patterns": ["posición inicial de los jugadores en el saque de inicio"],
+            "responses": ["Todos los jugadores deben estar en su mitad del campo en el saque inicial."]
+        },
+        {
+            "tag": "reglas_futsal",
+            "patterns": ["prohibición de contacto físico excesivo"],
+            "responses": ["El contacto físico excesivo se penaliza con falta o tarjeta."]
+        },
+        {
+            "tag": "reglas_futsal",
+            "patterns": ["reglas para el portero fuera del área"],
+            "responses": ["El portero no puede tocar el balón con las manos fuera de su área."]
+        },
+        {
+            "tag": "reglas_futsal",
+            "patterns": ["tiempo permitido para que el portero mantenga el balón"],
+            "responses": ["El portero solo puede mantener el balón por 4 segundos."]
+        },
+        {
+            "tag": "reglas_futsal",
+            "patterns": ["gol válido desde cualquier zona del campo"],
+            "responses": ["Un gol es válido si el balón cruza completamente la línea desde cualquier lugar."]
+        },
+        {
+            "tag": "reglas_futsal",
+            "patterns": ["uso obligatorio de equipamiento reglamentario"],
+            "responses": ["Todos los jugadores deben usar un uniforme y calzado reglamentario."]
+        },
+        {
+            "tag": "reglas_futsal",
+            "patterns": ["penalización por conducta antideportiva"],
+            "responses": ["La conducta antideportiva se sanciona con tarjeta amarilla o roja."]
+        },
+        {
+            "tag": "reglas_futsal",
+            "patterns": ["prohibición de pasar el balón al portero con el pie"],
+            "responses": ["No se permite que el portero reciba un pase directo con el pie."]
+        },
+        {
+            "tag": "reglas_futsal",
+            "patterns": ["distancia mínima en los saques de esquina"],
+            "responses": ["Los jugadores deben respetar una distancia mínima de 5 metros en el saque de esquina."]
+        },
+        {
+            "tag": "reglas_futsal",
+            "patterns": ["reanudación del juego tras una interrupción"],
+            "responses": ["El árbitro reanuda el juego con un bote neutral en caso de interrupción."]
+        }
+    ]
+}

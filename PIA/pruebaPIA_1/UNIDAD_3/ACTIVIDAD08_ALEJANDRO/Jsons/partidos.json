@@ -1,0 +1,39 @@
+{
+    "partidos": [
+        {
+            "equipo1": "Leones FC",
+            "equipo2": "Tigres United",
+            "fecha": "2024-11-25",
+            "hora": "18:00",
+            "lugar": "Estadio Central"
+        },
+        {
+            "equipo1": "Águilas Doradas",
+            "equipo2": "Panteras Negras",
+            "fecha": "2024-11-26",
+            "hora": "20:00",
+            "lugar": "Arena del Sur"
+        },
+        {
+            "equipo1": "Lobos del Norte",
+            "equipo2": "Leones FC",
+            "fecha": "2024-11-27",
+            "hora": "19:30",
+            "lugar": "Coliseo del Norte"
+        },
+        {
+            "equipo1": "Tigres United",
+            "equipo2": "Águilas Doradas",
+            "fecha": "2024-11-28",
+            "hora": "18:45",
+            "lugar": "Campo Deportivo Oriente"
+        },
+        {
+            "equipo1": "Panteras Negras",
+            "equipo2": "Lobos del Norte",
+            "fecha": "2024-11-29",
+            "hora": "20:15",
+            "lugar": "Estadio Central"
+        }
+    ]
+}

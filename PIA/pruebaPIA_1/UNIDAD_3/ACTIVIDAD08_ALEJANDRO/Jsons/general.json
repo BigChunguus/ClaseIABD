@@ -1,0 +1,111 @@
+{
+"intents": [
+        {
+            "tag": "saludos",
+            "patterns": [
+                "hola",
+                "buenos días",
+                "buenas tardes",
+                "hey",
+                "holi"
+            ],
+            "responses": [
+                "¡Hola! ¿En qué puedo ayudarte?",
+                "¡Buenas! ¿Todo bien?",
+                "Hey, ¿qué tal?"
+            ]
+        },
+        {
+            "tag": "despedida",
+            "patterns": [
+                "adiós",
+                "hasta luego",
+                "nos vemos",
+                "chao"
+            ],
+            "responses": [
+                "¡Hasta pronto!",
+                "Adiós, cuídate.",
+                "Nos vemos, ¡que tengas un buen día!"
+            ]
+        },
+        {
+            "tag": "bien",
+            "patterns": [
+                "bien"
+            ],
+            "responses": [
+                "¡Me alegro de que estés bien!"
+            ]
+        },
+        {
+            "tag": "mal",
+            "patterns": [
+                "mal"
+            ],
+            "responses": [
+                "Ánimo. Los días malos también se acaban."
+            ]
+        },
+        {
+            "tag": "agradecimiento",
+            "patterns": [
+                "gracias",
+                "muchas gracias",
+                "te lo agradezco"
+            ],
+            "responses": [
+                "¡De nada!",
+                "No hay problema, ¡para eso estoy!",
+                "Siempre es un placer ayudar."
+            ]
+        },
+        {
+            "tag": "tips_futsal",
+            "patterns": [
+                "tips de fútbol sala",
+                "tip",
+                "consejos para jugar al fútbol sala",
+                "consejo"
+            ],
+            "responses": [
+                "Practica el control del balón con ambos pies.",
+                "Usa las paredes para hacer pases rápidos.",
+                "Mantén la cabeza levantada para visualizar el campo.",
+                "Mejora tu resistencia con ejercicios cardiovasculares.",
+                "Trabaja en la precisión de tus pases cortos.",
+                "Comunícate constantemente con tus compañeros.",
+                "Anticipa las jugadas en defensa.",
+                "No abuses de la conducción; prioriza el pase.",
+                "Entrena tus reflejos para reaccionar rápido.",
+                "Estudia el estilo de juego de tus oponentes.",
+                "Utiliza fintas para confundir a tus rivales.",
+                "Domina los tiros a portería desde varias posiciones.",
+                "Trabaja en tu posicionamiento dentro del campo.",
+                "Juega con calma bajo presión.",
+                "Asegúrate de calentar antes del partido.",
+                "Aprende a usar tu cuerpo para proteger el balón.",
+                "Practica tiros con la puntera para sorpresas rápidas.",
+                "Evita las faltas innecesarias.",
+                "Fomenta el trabajo en equipo y el respeto mutuo.",
+                "Mantén siempre la actitud positiva."
+            ]
+        },
+        {
+            "tag": "estiramientos_futsal",
+            "patterns": [
+                "estiramientos para fútbol sala",
+                "cómo estirarse para fútbol sala"
+            ],
+            "responses": [
+                "Realiza estiramientos dinámicos para activar músculos antes del partido.",
+                "Estira tus cuádriceps de pie, sujetando el pie hacia los glúteos.",
+                "Haz estiramientos de isquiotibiales inclinándote hacia adelante con una pierna extendida.",
+                "Estira los aductores abriendo las piernas en posición de sentadilla.",
+                "Estira los gemelos empujando contra una pared con una pierna extendida detrás.",
+                "Incluye estiramientos de cadera moviendo las piernas en círculos.",
+                "Realiza estiramientos de brazos y hombros para pases y lanzamientos."
+            ]
+        }
+    ]
+}
