@@ -40,14 +40,6 @@ def hablar(mensaje, idioma):
         voice_id = 'HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Speech\\Voices\\Tokens\\TTS_MS_ES-ES_HELENA_11.0'  # Voz en español
     elif idioma == 'en':
         voice_id = 'HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Speech\\Voices\\Tokens\\TTS_MS_EN-US_ZIRA_11.0'  # Voz en inglés
-    elif idioma == 'fr':
-        voice_id = 'HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Speech\\Voices\\Tokens\\TTS_MS_FR-FR_HORTENSE_11.0'  # Voz en francés
-    elif idioma == 'de':
-        voice_id = 'HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Speech\\Voices\\Tokens\\TTS_MS_DE-DE_KONRAD_11.0'  # Voz en alemán
-    elif idioma == 'it':
-        voice_id = 'HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Speech\\Voices\\Tokens\\TTS_MS_IT-IT_CARLO_11.0'  # Voz en italiano
-    elif idioma == 'pt':
-        voice_id = 'HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Speech\\Voices\\Tokens\\TTS_MS_PT-PT_ANTONIO_11.0'  # Voz en portugués
     else:
         voice_id = voces[0].id  # Si no hay coincidencia, usar la primera voz disponible
 
@@ -121,11 +113,7 @@ def traducir_texto(pedido):
         idioma = partes[1].strip().lower()
         codigo_idioma = {
             'inglés': 'en',
-            'francés': 'fr',
-            'alemán': 'de',
-            'italiano': 'it',
             'español': 'es',
-            'portugués': 'pt'
         }
         if idioma in codigo_idioma:
             traductor = Translator()
