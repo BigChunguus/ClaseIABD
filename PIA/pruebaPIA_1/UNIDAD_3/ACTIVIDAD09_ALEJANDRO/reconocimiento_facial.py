@@ -2,8 +2,7 @@ import cv2
 import mediapipe as mp
 from fer import FER
 import os
-from datetime import datetime
-import hashlib
+import face_recognition
 
 # Configuración inicial
 mp_drawing = mp.solutions.drawing_utils
@@ -14,27 +13,28 @@ hands = mp_hands.Hands(static_image_mode=False,
                        min_tracking_confidence=0.5)
 detector_emociones = FER()
 
-# Directorio para guardar rostros desconocidos
-DIRECTORIO_ROSTROS = "rostros_desconocidos"
+DIRECTORIO_BASE = os.path.dirname(os.path.abspath(__file__))
+DIRECTORIO_CONOCIDOS = os.path.join(DIRECTORIO_BASE, "rostros_conocidos")
 
 # Crear directorio si no existe
-if not os.path.exists(DIRECTORIO_ROSTROS):
-    os.makedirs(DIRECTORIO_ROSTROS)
+if not os.path.exists(DIRECTORIO_CONOCIDOS):
+    os.makedirs(DIRECTORIO_CONOCIDOS)
 
-# Función para generar una firma única para un rostro
-def generar_firma(rostro):
-    rostro_redimensionado = cv2.resize(rostro, (50, 50))  # Redimensionar para uniformidad
-    rostro_bytes = rostro_redimensionado.tobytes()  # Convertir a bytes
-    return hashlib.md5(rostro_bytes).hexdigest()  # Crear un hash único
+# Función para buscar rostros en el directorio de conocidos
+def buscar_rostro_conocido(rostro_encodings):
+    for imagen in os.listdir(DIRECTORIO_CONOCIDOS):
+        ruta_imagen = os.path.join(DIRECTORIO_CONOCIDOS, imagen)
+        
+        try:
+            conocido_encodings = face_recognition.face_encodings(cv2.imread(ruta_imagen), model='hog')[0]
+            resultado = face_recognition.compare_faces([conocido_encodings], rostro_encodings)
+            if resultado[0]:
+                return imagen.replace(".jpg", "")
+        except Exception as e:
+            print(f"Error al procesar la imagen {imagen}: {e}")
+    return None
 
-# Función para comprobar si un rostro ya está guardado
-def rostro_ya_guardado(firma):
-    # Obtener las firmas ya guardadas en el directorio
-    for archivo in os.listdir(DIRECTORIO_ROSTROS):
-        if archivo.endswith(".jpg") and archivo.startswith(firma):
-            return True
-    return False
-
+'''
 # Función para guardar la región del rostro desconocido
 def guardar_rostro(rostro):
     firma = generar_firma(rostro)  # Generar firma única para el rostro
@@ -44,9 +44,10 @@ def guardar_rostro(rostro):
         print("Rostro ya registrado previamente, no se guarda.")
     else:
         # Guardar rostro con la firma como nombre de archivo
-        nombre_archivo = os.path.join(DIRECTORIO_ROSTROS, f"{firma}.jpg")
+        nombre_archivo = os.path.join(DIRECTORIO_DESCONOCIDOS, f"{firma}.jpg")
         cv2.imwrite(nombre_archivo, rostro)
         print(f"Rostro guardado en: {nombre_archivo}")
+'''
 
 # Función para detectar gestos de manos
 def detectar_gesto(frame):
@@ -91,20 +92,25 @@ while True:
         break
 
     frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     rostros = face_cascade.detectMultiScale(frame_gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
 
     for (x, y, w, h) in rostros:
         rostro = frame[y:y+h, x:x+w]
-        nombre = "Desconocido"  # Simulación del reconocimiento facial
-        color = (0, 0, 255) if nombre == "Desconocido" else (0, 255, 0)
+        rostro_rgb = cv2.cvtColor(rostro, cv2.COLOR_BGR2RGB)
+        try:
+            rostro_encodings = face_recognition.face_encodings(rostro_rgb, model='hog')[0]
+            nombre = buscar_rostro_conocido(rostro_encodings)
+        except IndexError:
+            nombre = None
 
-        # Guardar rostro si es desconocido
-        if nombre == "Desconocido":
-            guardar_rostro(rostro)
+        if nombre:
+            color = (0, 255, 0)  # Conocido
+        else:
+            color = (0, 0, 255)  # Desconocido
+            nombre = "Desconocido"
 
         # Detección de emociones
-        emociones = detector_emociones.detect_emotions(frame_rgb[y:y+h, x:x+w])
+        emociones = detector_emociones.detect_emotions(frame[y:y+h, x:x+w])
         texto_emocion = ""
         if emociones:
             emocion_predominante = emociones[0]['emotions']

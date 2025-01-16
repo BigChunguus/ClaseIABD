@@ -77,3 +77,20 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+'''
+# Función para guardar la región del rostro desconocido
+def guardar_rostro(rostro):
+    firma = generar_firma(rostro)  # Generar firma única para el rostro
+
+    # Comprobar si la firma ya existe
+    if rostro_ya_guardado(firma):
+        print("Rostro ya registrado previamente, no se guarda.")
+    else:
+        # Guardar rostro con la firma como nombre de archivo
+        nombre_archivo = os.path.join(DIRECTORIO_DESCONOCIDOS, f"{firma}.jpg")
+        cv2.imwrite(nombre_archivo, rostro)
+        print(f"Rostro guardado en: {nombre_archivo}")
+'''
