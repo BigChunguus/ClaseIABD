@@ -4,7 +4,7 @@ from fer import FER
 import os
 import face_recognition
 
-# Configuración inicial
+# Configuración inicial de FER
 mp_drawing = mp.solutions.drawing_utils
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands(static_image_mode=False,
@@ -59,7 +59,7 @@ def detectar_gesto(frame):
     if resultado.multi_hand_landmarks:
         for mano_landmarks in resultado.multi_hand_landmarks:
             dedos_doblados = 0
-            for id_dedo in [8, 12, 16, 20]:  # Tips de los dedos excepto el pulgar
+            for id_dedo in [8, 12, 16, 20]:
                 finger_tip_y = mano_landmarks.landmark[id_dedo].y
                 finger_mcp_y = mano_landmarks.landmark[id_dedo - 2].y
                 if finger_tip_y > finger_mcp_y:
@@ -82,8 +82,6 @@ def detectar_gesto(frame):
 
 # Configuración del reconocimiento facial
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
-
-# Inicia captura de video
 cap = cv2.VideoCapture(0)
 
 while True:
@@ -104,9 +102,13 @@ while True:
             nombre = None
 
         if nombre:
-            color = (0, 255, 0)  # Conocido
+            if "Edward" in nombre:
+                color = (0, 0, 255)  
+                nombre = "Edward - Acceso denegado"
+            else:
+                color = (0, 255, 0)  
         else:
-            color = (0, 0, 255)  # Desconocido
+            color = (0, 0, 255)
             nombre = "Desconocido"
 
         # Detección de emociones
@@ -126,7 +128,8 @@ while True:
         cv2.putText(frame, nombre, (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, color, 2)
         cv2.putText(frame, texto_emocion, (x, y+h+20), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
 
-    # Conteo de rostros
+
+    
     texto_rostros = f"Rostros detectados: {len(rostros)}"
     cv2.putText(frame, texto_rostros, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 255), 2)
 
