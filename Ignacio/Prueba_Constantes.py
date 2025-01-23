@@ -1,41 +1,24 @@
 import math
 
-# Coeficientes y errores estándar
-parametros = {
-    "Constante": {"B": -3.296, "ErrorEstandar": 0.367},
-    "AnteceFami": {"B": 1.56, "ErrorEstandar": 0.249},
-    "Sedentarismo": {"B": 1.204, "ErrorEstandar": 0.267},
-    "Alcohol": {"B": 1.595, "ErrorEstandar": 0.281},
-    "Obesidad": {"B": 4.147, "ErrorEstandar": 0.54},
-    "Trigliceridos": {"B": 1.401, "ErrorEstandar": 0.26},
-    "HTA": {"B": 0.944, "ErrorEstandar": 0.297}
+
+B = {
+    "Constante": -3.296,
+    "AnteceFami": 1.56,
+    "Sedentarismo": 1.204,
+    "Alcohol": 1.595,
+    "Obesidad": 4.147,
+    "Trigliceridos": 1.401,
+    "HTA": 0.944
 }
 
-# Función para calcular la probabilidad
-def calcular_probabilidad(familia, sedentarismo, alcohol, obesidad, trigliceridos, hta, ajuste="normal"):
-    if ajuste == "normal":
-        # Coeficientes originales
-        coef = {k: v["B"] for k, v in parametros.items()}
-    elif ajuste == "positivo":
-        # Coeficientes ajustados hacia +Error estándar
-        coef = {k: v["B"] + v["ErrorEstandar"] for k, v in parametros.items()}
-    elif ajuste == "negativo":
-        # Coeficientes ajustados hacia -Error estándar
-        coef = {k: v["B"] - v["ErrorEstandar"] for k, v in parametros.items()}
-    
+def calcular_probabilidad(familia, sedentarismo, alcohol, obesidad, trigliceridos, hta):
     z = (
-        coef["Constante"] +
-        coef["AnteceFami"] * familia +
-        coef["Sedentarismo"] * sedentarismo +
-        coef["Alcohol"] * alcohol +
-        coef["Obesidad"] * obesidad +
-        coef["Trigliceridos"] * trigliceridos +
-        coef["HTA"] * hta
+        B["Constante"] + B["AnteceFami"] * familia + B["Sedentarismo"] * sedentarismo + B["Alcohol"] * alcohol + B["Obesidad"] * obesidad + B["Trigliceridos"] * trigliceridos + B["HTA"] * hta
     )
+    
     probabilidad = 1 / (1 + math.exp(-z))
     return probabilidad
 
-# Evaluar efectividad para diferentes ajustes
 datos = [
     {"ID": 1, "AnteceFami": 1, "Sedentarismo": 0, "Alcohol": 0, "Obesidad": 0, "Trigliceridos": 0, "HTA": 0, "Diabetes": 0},
     {"ID": 2, "AnteceFami": 1, "Sedentarismo": 0, "Alcohol": 0, "Obesidad": 1, "Trigliceridos": 0, "HTA": 0, "Diabetes": 1},
@@ -52,7 +35,8 @@ datos = [
     {"ID": 13, "AnteceFami": 1, "Sedentarismo": 1, "Alcohol": 0, "Obesidad": 0, "Trigliceridos": 0, "HTA": 0, "Diabetes": 1}
 ]
 
-# Calcular probabilidad para cada fila
+aciertos = 0
+total = len(datos)
 resultados = []
 for fila in datos:
     prob = calcular_probabilidad(
@@ -64,7 +48,13 @@ for fila in datos:
         fila["HTA"]
     )
     resultados.append({"ID": fila["ID"], "Probabilidad": prob, "Diabetes": prob > 0.5})
+    prediccion = prob > 0.5
+    es_correcto = (prediccion == (fila["Diabetes"] == 1))
+    aciertos += es_correcto
 
-# Imprimir resultados
+efectividad = (aciertos / total) * 100
+
 for r in resultados:
     print(f"ID: {r['ID']}, Probabilidad: {r['Probabilidad']:.4f}, Diabetes: {'Sí' if r['Diabetes'] else 'No'}")
+
+print("Tasa de aciertos = " , round(efectividad, 2))

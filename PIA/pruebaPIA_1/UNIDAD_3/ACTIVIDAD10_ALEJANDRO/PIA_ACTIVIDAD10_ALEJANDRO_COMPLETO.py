@@ -1,123 +1,147 @@
 import cv2
 import mediapipe as mp
 import numpy as np
-import time
-import os
 
-# Función para calcular ángulos entre tres puntos
-def calculate_angle(a, b, c):
-    a = np.array(a)  # Primer punto
-    b = np.array(b)  # Punto medio
-    c = np.array(c)  # Último punto
+def calcular_angulo(a, b, c):
+    a = np.array(a)
+    b = np.array(b)
+    c = np.array(c)
 
-    radians = np.arctan2(c[1] - b[1], c[0] - b[0]) - np.arctan2(a[1] - b[1], a[0] - b[0])
-    angle = np.abs(radians * 180.0 / np.pi)
+    radianes = np.arctan2(c[1] - b[1], c[0] - b[0]) - np.arctan2(a[1] - b[1], a[0] - b[0])
+    angulo = np.abs(radianes * 180.0 / np.pi)
 
-    if angle > 180.0:
-        angle = 360.0 - angle
+    if angulo > 180.0:
+        angulo = 360.0 - angulo
 
-    return angle
+    return angulo
+
+def draw_transparent_text(image, text, position, font, font_scale, text_color, thickness, bg_color, alpha=0.5):
+    overlay = image.copy()
+    (text_width, text_height), _ = cv2.getTextSize(text, font, font_scale, thickness)
+    
+    x, y = position
+    bg_start = (x, y - text_height - 10)
+    bg_end = (x + text_width + 20, y + 10)
+
+    # Fondo semitransparente
+    cv2.rectangle(overlay, bg_start, bg_end, bg_color, -1)
+    image = cv2.addWeighted(overlay, alpha, image, 1 - alpha, 0)
+
+    # Texto
+    cv2.putText(image, text, (x + 10, y), font, font_scale, text_color, thickness, cv2.LINE_AA)
+    return image
 
 def main():
-    # Inicializar MediaPipe Pose
     mp_drawing = mp.solutions.drawing_utils
     mp_pose = mp.solutions.pose
 
-    # Inicializar captura de video
     cap = cv2.VideoCapture(0)
+
+    # Configurar pantalla completa
     cv2.namedWindow('Mediapipe Feed', cv2.WINDOW_NORMAL)
-    cv2.resizeWindow('Mediapipe Feed', 1280, 960)
+    cv2.setWindowProperty('Mediapipe Feed', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
 
-    # Lista de estiramientos
-    estiramientos = [1, 2, 3, 4, 5]
-    nombres_estiramientos = [
-        "Curl de Bíceps", "Sentadillas", "Levantamiento de Brazos", "Estiramiento Cuádriceps", "Cuello"]
+    entrenamientos = [1, 2, 3]
+    nombres_ejercicios = ["Curl de Biceps Izquierdo", "Curl de Biceps Derecho"]
 
-    while True:
-        iniciar = input("Presiona 'Enter' para comenzar los estiramientos o 's' para salir: ")
-        if iniciar.lower() == 's':
-            break
+    for idx, entrenamiento_num in enumerate(entrenamientos):
+        contador = 0  
+        estado = True  
 
-        # Iterar sobre cada estiramiento
-        for idx, estiramiento_num in enumerate(estiramientos):
-            counter = 0  # Contador de repeticiones
-            stage = None
+        with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose:
+            while cap.isOpened() and contador < 10:
+                ret, frame = cap.read()
+                if not ret:
+                    print("No se pudo recibir el frame. Saliendo...")
+                    break
 
-            with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose:
-                while cap.isOpened() and counter < 10:
-                    ret, frame = cap.read()
-                    if not ret:
-                        print("No se pudo recibir el frame. Saliendo...")
-                        break
+                imagen = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                imagen.flags.writeable = False
+                resultado = pose.process(imagen)
+                imagen.flags.writeable = True
+                imagen = cv2.cvtColor(imagen, cv2.COLOR_RGB2BGR)
 
-                    # Procesar la imagen
-                    image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                    image.flags.writeable = False
-                    results = pose.process(image)
-                    image.flags.writeable = True
-                    image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+                mp_drawing.draw_landmarks(
+                    imagen, resultado.pose_landmarks, mp_pose.POSE_CONNECTIONS,
+                    mp_drawing.DrawingSpec(color=(245, 117, 66), thickness=2, circle_radius=2),
+                    mp_drawing.DrawingSpec(color=(245, 66, 230), thickness=2, circle_radius=2)
+                )
 
-                    # Renderizar detecciones
-                    mp_drawing.draw_landmarks(
-                        image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,
-                        mp_drawing.DrawingSpec(color=(245, 117, 66), thickness=2, circle_radius=2),
-                        mp_drawing.DrawingSpec(color=(245, 66, 230), thickness=2, circle_radius=2)
+                try:
+                    landmarks = resultado.pose_landmarks.landmark
+                    altura_imagen, grosor_imagen, _ = imagen.shape
+
+                    if entrenamiento_num == 1: # Curl de Bíceps Izquierdo
+                        hombroIzquiero = [landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].x * grosor_imagen,
+                                    landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].y * altura_imagen]
+                        codoIzquierdo = [landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].x * grosor_imagen,
+                                 landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].y * altura_imagen]
+                        munecaIzquierda = [landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].x * grosor_imagen,
+                                 landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].y * altura_imagen]
+
+                        anguloBIzquierdo = calcular_angulo(hombroIzquiero, codoIzquierdo, munecaIzquierda)
+
+                        if anguloBIzquierdo > 140:
+                            estado = False
+                        if anguloBIzquierdo < 50 and estado == False:
+                            contador += 1
+                            estado = True
+                            print(f"Repetición {contador} de 10")
+                    
+                    elif entrenamiento_num == 2: # Curl de Bíceps Derecho
+                        hombroDerecho = [landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].x * grosor_imagen,
+                                         landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].y * altura_imagen]
+                        codoDerecho = [landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].x * grosor_imagen,
+                                       landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].y * altura_imagen]
+                        munecaDerecha = [landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].x * grosor_imagen,
+                                         landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].y * altura_imagen]   
+
+                        anguloBDerecho = calcular_angulo(hombroDerecho, codoDerecho, munecaDerecha)
+
+                        if anguloBDerecho > 140:
+                            estado = False
+                        if anguloBDerecho < 50 and estado == False:
+                            contador += 1
+                            estado = True
+                            print(f"Repetición {contador} de 10")
+                except Exception:
+                    pass
+
+                # Fondo semitransparente para el contador
+                imagen = draw_transparent_text(
+                    imagen, f'Repeticion:', (5, 40), cv2.FONT_HERSHEY_SIMPLEX,
+                    0.8, (255, 255, 255), 2, (255, 0, 0), alpha=0.5
+                )
+                imagen = draw_transparent_text(
+                    imagen, f'{contador}/10', (5, 100), cv2.FONT_HERSHEY_SIMPLEX,
+                    0.8, (255, 255, 255), 2, (255, 0, 0), alpha=0.5
+                )
+                if estado:
+                    imagen = draw_transparent_text(
+                        imagen, f'Baja', (120, 100), cv2.FONT_HERSHEY_SIMPLEX,
+                        0.8, (255, 255, 255), 2, (255, 0, 0), alpha=0.5 
                     )
+                else:
+                    imagen = draw_transparent_text(
+                        imagen, f'Sube  ', (120, 100), cv2.FONT_HERSHEY_SIMPLEX,
+                        0.8, (255, 255, 255), 2, (255, 0, 0), alpha=0.5 
+                    )
+                imagen = draw_transparent_text(
+                    imagen, nombres_ejercicios[idx], (300, 40), cv2.FONT_HERSHEY_SIMPLEX,
+                    0.8, (255, 255, 255), 2, (255, 0, 0), alpha=0.5
+                )
 
-                    # Extraer landmarks
-                    try:
-                        landmarks = results.pose_landmarks.landmark
-                        image_height, image_width, _ = image.shape
 
-                        if estiramiento_num == 1:  # Curl de bíceps
-                            shoulder = [landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].x * image_width,
-                                        landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].y * image_height]
-                            elbow = [landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].x * image_width,
-                                     landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].y * image_height]
-                            wrist = [landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].x * image_width,
-                                     landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].y * image_height]
+                cv2.imshow('Mediapipe Feed', imagen)
 
-                            # Calcular ángulo
-                            angle = calculate_angle(shoulder, elbow, wrist)
+                if cv2.waitKey(10) & 0xFF == ord('q'):
+                    cap.release()
+                    cv2.destroyAllWindows()
+                    return
 
-                            # Visualizar ángulo
-                            cv2.putText(image, str(int(angle)), (int(elbow[0]), int(elbow[1])),
-                                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1, cv2.LINE_AA)
+            print(f"¡Has completado el {nombres_ejercicios[idx]}!")
 
-                            # Lógica del contador
-                            if angle > 160:
-                                stage = "bajando"
-                            if angle < 30 and stage == 'bajando':
-                                stage = "subiendo"
-                                counter += 1
-                                print(f"Repetición {counter} de 10")
-
-                    except Exception as e:
-                        pass
-
-                    # Mostrar frame
-                    cv2.rectangle(image, (0, 0), (300, 100), (245, 117, 16), -1)
-                    cv2.putText(image, f'{counter}/10', (10, 80),
-                                cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 255, 255), 2, cv2.LINE_AA)
-                    cv2.putText(image, 'ESTADO', (160, 30),
-                                cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2, cv2.LINE_AA)
-                    cv2.putText(image, stage if stage is not None else '', (160, 80),
-                                cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 255, 255), 2, cv2.LINE_AA)
-
-                    cv2.imshow('Mediapipe Feed', image)
-
-                    if cv2.waitKey(10) & 0xFF == ord('q'):
-                        cap.release()
-                        cv2.destroyAllWindows()
-                        return
-
-                print(f"¡Has completado el {nombres_estiramientos[idx]}!")
-
-        repetir = input("¿Deseas continuar con los estiramientos? (s/n): ")
-        if repetir.lower() != 's':
-            print("¡Gracias por usar la aplicación de estiramientos!")
-            break
-
+    print("¡Gracias por usar la aplicación de estiramientos!")
     cap.release()
     cv2.destroyAllWindows()
 
