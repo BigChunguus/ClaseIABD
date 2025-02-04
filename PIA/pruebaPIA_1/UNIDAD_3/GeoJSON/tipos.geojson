@@ -1,0 +1,41 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+
+        {
+            "type": "Feature",
+            "properties": {"nombre": "Punto A"},
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-3.7038, 40.4168] 
+            }
+        },
+
+        {
+            "type": "Feature",
+            "properties": {"nombre": "Ruta 1"},
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [-3.7038, 40.4168],  
+                    [-0.3763, 39.4699], 
+                    [-1.6596, 42.8469]   
+                ]
+            }
+        },
+      
+        {
+            "type": "Feature",
+            "properties": {"nombre": "Zona Protegida"},
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [[
+                    [-3.70, 40.41], 
+                    [-3.71, 40.42],  
+                    [-3.72, 40.41], 
+                    [-3.70, 40.41]  
+                ]]
+            }
+        }
+    ]
+}
