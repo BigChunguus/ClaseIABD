@@ -1,0 +1,31 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.7,
+          40.42
+        ]
+      },
+      "properties": {
+        "nombre": "Punto A Modificado"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nombre": "Punto C"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.94,
+          43.26
+        ]
+      }
+    }
+  ]
+}
