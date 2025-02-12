@@ -1,32 +1,41 @@
 sudo apt update && sudo apt upgrade -y
 
-mkdir ws_alejandro
-
-cd ws_alejandro
-
-mkdir src
+sudo apt install gazebo
 
 source /opt/ros/humble/setup.bash
 
-source .bashrc
+gazebo
 
-colcon build
+sudo apt install ros-humble-gazebo-ros-pkgs
 
-ros2 pkg create --build-type ament_python robot_alejandro
+home/.gazebo/models/modelo_robot/meshes
 
-cd robot_alejandro
+sudo rosdep init
 
-mkdir urdf
-mkdir meshes
-mkdir launch
-ls
+rosdep update 
 
-sudo apt update
-
-sudo apt install ros-humble-joint-state-publisher-gui
+rosdep install --from-paths src --ignore-src -r -y
 
 colcon build
 
 source install/setup.bash
 
-ros2 launch robot_alejandro display.launch.py
+ros2 launch <nombre_modelo> <nombre_lanzador.py>
+
+<inertial>
+    <inertia
+
+            ixx="0.0001"
+
+            ixy="0"
+
+            ixz="0"
+
+            iyy="0.0003"
+
+            iyz="0"
+
+            izz="0.0002" />
+</inertial>
+
+"Tambien se pueden hacer mas cosas pero que son innecesarias" (trastea haz lo que quieras xd)
