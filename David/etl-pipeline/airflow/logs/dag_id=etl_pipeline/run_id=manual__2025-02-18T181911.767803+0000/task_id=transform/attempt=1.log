@@ -1,0 +1,38 @@
+[2025-02-18T18:19:16.991+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: etl_pipeline.transform manual__2025-02-18T18:19:11.767803+00:00 [queued]>
+[2025-02-18T18:19:17.010+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: etl_pipeline.transform manual__2025-02-18T18:19:11.767803+00:00 [queued]>
+[2025-02-18T18:19:17.011+0000] {taskinstance.py:1279} INFO - 
+--------------------------------------------------------------------------------
+[2025-02-18T18:19:17.012+0000] {taskinstance.py:1280} INFO - Starting attempt 1 of 2
+[2025-02-18T18:19:17.013+0000] {taskinstance.py:1281} INFO - 
+--------------------------------------------------------------------------------
+[2025-02-18T18:19:17.035+0000] {taskinstance.py:1300} INFO - Executing <Task(PythonOperator): transform> on 2025-02-18 18:19:11.767803+00:00
+[2025-02-18T18:19:17.041+0000] {standard_task_runner.py:55} INFO - Started process 294 to run task
+[2025-02-18T18:19:17.045+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'etl_pipeline', 'transform', 'manual__2025-02-18T18:19:11.767803+00:00', '--job-id', '24', '--raw', '--subdir', 'DAGS_FOLDER/etl_dag.py', '--cfg-path', '/tmp/tmpvtnkr3ke']
+[2025-02-18T18:19:17.048+0000] {standard_task_runner.py:83} INFO - Job 24: Subtask transform
+[2025-02-18T18:19:17.070+0000] {logging_mixin.py:137} WARNING - /home/***/.local/lib/python3.7/site-packages/***/settings.py:249 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-18T18:19:17.149+0000] {task_command.py:388} INFO - Running <TaskInstance: etl_pipeline.transform manual__2025-02-18T18:19:11.767803+00:00 [running]> on host 25ff48d7fca5
+[2025-02-18T18:19:17.271+0000] {taskinstance.py:1509} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=etl_pipeline
+AIRFLOW_CTX_TASK_ID=transform
+AIRFLOW_CTX_EXECUTION_DATE=2025-02-18T18:19:11.767803+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2025-02-18T18:19:11.767803+00:00
+[2025-02-18T18:19:17.273+0000] {logging_mixin.py:137} INFO - 🔍 Ejecutando el comando: docker exec spark-1 /opt/spark/bin/spark-submit /scripts/spark_etl.py
+[2025-02-18T18:19:17.331+0000] {logging_mixin.py:137} INFO - ❌ ERROR en Spark ETL:
+[2025-02-18T18:19:17.332+0000] {logging_mixin.py:137} INFO - Error: No such container: spark-1
+[2025-02-18T18:19:17.333+0000] {taskinstance.py:1768} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 175, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 192, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/etl_dag.py", line 22, in spark_etl
+    shell=True  # Especificamos shell=True porque estamos ejecutando un comando de bash
+  File "/usr/local/lib/python3.7/subprocess.py", line 512, in run
+    output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command 'docker exec spark-1 /opt/spark/bin/spark-submit /scripts/spark_etl.py' returned non-zero exit status 1.
+[2025-02-18T18:19:17.355+0000] {taskinstance.py:1323} INFO - Marking task as UP_FOR_RETRY. dag_id=etl_pipeline, task_id=transform, execution_date=20250218T181911, start_date=20250218T181916, end_date=20250218T181917
+[2025-02-18T18:19:17.376+0000] {standard_task_runner.py:105} ERROR - Failed to execute job 24 for task transform (Command 'docker exec spark-1 /opt/spark/bin/spark-submit /scripts/spark_etl.py' returned non-zero exit status 1.; 294)
+[2025-02-18T18:19:17.419+0000] {local_task_job.py:208} INFO - Task exited with return code 1
+[2025-02-18T18:19:17.454+0000] {taskinstance.py:2578} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,34 @@
+[2025-02-17T18:45:44.766+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: etl_pipeline.transform manual__2025-02-17T18:45:41.105388+00:00 [queued]>
+[2025-02-17T18:45:44.785+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: etl_pipeline.transform manual__2025-02-17T18:45:41.105388+00:00 [queued]>
+[2025-02-17T18:45:44.786+0000] {taskinstance.py:1279} INFO - 
+--------------------------------------------------------------------------------
+[2025-02-17T18:45:44.789+0000] {taskinstance.py:1280} INFO - Starting attempt 1 of 2
+[2025-02-17T18:45:44.789+0000] {taskinstance.py:1281} INFO - 
+--------------------------------------------------------------------------------
+[2025-02-17T18:45:44.813+0000] {taskinstance.py:1300} INFO - Executing <Task(PythonOperator): transform> on 2025-02-17 18:45:41.105388+00:00
+[2025-02-17T18:45:44.820+0000] {standard_task_runner.py:55} INFO - Started process 282 to run task
+[2025-02-17T18:45:44.824+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'etl_pipeline', 'transform', 'manual__2025-02-17T18:45:41.105388+00:00', '--job-id', '7', '--raw', '--subdir', 'DAGS_FOLDER/etl_dag.py', '--cfg-path', '/tmp/tmpaxz7_qze']
+[2025-02-17T18:45:44.826+0000] {standard_task_runner.py:83} INFO - Job 7: Subtask transform
+[2025-02-17T18:45:44.848+0000] {logging_mixin.py:137} WARNING - /home/***/.local/lib/python3.7/site-packages/***/settings.py:249 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-17T18:45:44.921+0000] {task_command.py:388} INFO - Running <TaskInstance: etl_pipeline.transform manual__2025-02-17T18:45:41.105388+00:00 [running]> on host f05cc992ddf9
+[2025-02-17T18:45:45.025+0000] {taskinstance.py:1509} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=etl_pipeline
+AIRFLOW_CTX_TASK_ID=transform
+AIRFLOW_CTX_EXECUTION_DATE=2025-02-17T18:45:41.105388+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2025-02-17T18:45:41.105388+00:00
+[2025-02-17T18:45:45.027+0000] {logging_mixin.py:137} INFO - 🔍 Verificando la existencia del script de Spark ETL...
+[2025-02-17T18:45:45.028+0000] {taskinstance.py:1768} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 175, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 192, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/etl_dag.py", line 15, in spark_etl
+    raise FileNotFoundError(f"❌ ERROR: El script {script_path} no se encuentra.")
+FileNotFoundError: ❌ ERROR: El script /scripts/spark_etl.py no se encuentra.
+[2025-02-17T18:45:45.050+0000] {taskinstance.py:1323} INFO - Marking task as UP_FOR_RETRY. dag_id=etl_pipeline, task_id=transform, execution_date=20250217T184541, start_date=20250217T184544, end_date=20250217T184545
+[2025-02-17T18:45:45.071+0000] {standard_task_runner.py:105} ERROR - Failed to execute job 7 for task transform (❌ ERROR: El script /scripts/spark_etl.py no se encuentra.; 282)
+[2025-02-17T18:45:45.119+0000] {local_task_job.py:208} INFO - Task exited with return code 1
+[2025-02-17T18:45:45.172+0000] {taskinstance.py:2578} INFO - 0 downstream tasks scheduled from follow-on schedule check

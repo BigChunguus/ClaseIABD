@@ -1,0 +1,38 @@
+[2025-02-18T18:26:03.184+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: etl_pipeline.transform manual__2025-02-18T18:20:56.895306+00:00 [queued]>
+[2025-02-18T18:26:03.199+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: etl_pipeline.transform manual__2025-02-18T18:20:56.895306+00:00 [queued]>
+[2025-02-18T18:26:03.200+0000] {taskinstance.py:1279} INFO - 
+--------------------------------------------------------------------------------
+[2025-02-18T18:26:03.202+0000] {taskinstance.py:1280} INFO - Starting attempt 2 of 2
+[2025-02-18T18:26:03.203+0000] {taskinstance.py:1281} INFO - 
+--------------------------------------------------------------------------------
+[2025-02-18T18:26:03.241+0000] {taskinstance.py:1300} INFO - Executing <Task(PythonOperator): transform> on 2025-02-18 18:20:56.895306+00:00
+[2025-02-18T18:26:03.248+0000] {standard_task_runner.py:55} INFO - Started process 414 to run task
+[2025-02-18T18:26:03.253+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'etl_pipeline', 'transform', 'manual__2025-02-18T18:20:56.895306+00:00', '--job-id', '28', '--raw', '--subdir', 'DAGS_FOLDER/etl_dag.py', '--cfg-path', '/tmp/tmpkh_kw930']
+[2025-02-18T18:26:03.256+0000] {standard_task_runner.py:83} INFO - Job 28: Subtask transform
+[2025-02-18T18:26:03.280+0000] {logging_mixin.py:137} WARNING - /home/***/.local/lib/python3.7/site-packages/***/settings.py:249 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-18T18:26:03.372+0000] {task_command.py:388} INFO - Running <TaskInstance: etl_pipeline.transform manual__2025-02-18T18:20:56.895306+00:00 [running]> on host 25ff48d7fca5
+[2025-02-18T18:26:03.486+0000] {taskinstance.py:1509} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=etl_pipeline
+AIRFLOW_CTX_TASK_ID=transform
+AIRFLOW_CTX_EXECUTION_DATE=2025-02-18T18:20:56.895306+00:00
+AIRFLOW_CTX_TRY_NUMBER=2
+AIRFLOW_CTX_DAG_RUN_ID=manual__2025-02-18T18:20:56.895306+00:00
+[2025-02-18T18:26:03.487+0000] {logging_mixin.py:137} INFO - 🔍 Ejecutando el comando: docker exec etl-pipeline-spark-1 /opt/spark/bin/spark-submit /scripts/spark_etl.py
+[2025-02-18T18:26:03.550+0000] {logging_mixin.py:137} INFO - ❌ ERROR en Spark ETL:
+[2025-02-18T18:26:03.551+0000] {logging_mixin.py:137} INFO - Error response from daemon: container 8cb4fb351748aec236359b21c8219fdb92267d6de94a183bbd7d26eb9c744336 is not running
+[2025-02-18T18:26:03.552+0000] {taskinstance.py:1768} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 175, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 192, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/etl_dag.py", line 22, in spark_etl
+    shell=True  # Especificamos shell=True porque estamos ejecutando un comando de bash
+  File "/usr/local/lib/python3.7/subprocess.py", line 512, in run
+    output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command 'docker exec etl-pipeline-spark-1 /opt/spark/bin/spark-submit /scripts/spark_etl.py' returned non-zero exit status 1.
+[2025-02-18T18:26:03.567+0000] {taskinstance.py:1323} INFO - Marking task as FAILED. dag_id=etl_pipeline, task_id=transform, execution_date=20250218T182056, start_date=20250218T182603, end_date=20250218T182603
+[2025-02-18T18:26:03.594+0000] {standard_task_runner.py:105} ERROR - Failed to execute job 28 for task transform (Command 'docker exec etl-pipeline-spark-1 /opt/spark/bin/spark-submit /scripts/spark_etl.py' returned non-zero exit status 1.; 414)
+[2025-02-18T18:26:03.628+0000] {local_task_job.py:208} INFO - Task exited with return code 1
+[2025-02-18T18:26:03.666+0000] {taskinstance.py:2578} INFO - 0 downstream tasks scheduled from follow-on schedule check

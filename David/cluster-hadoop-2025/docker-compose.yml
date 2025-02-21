@@ -1,0 +1,75 @@
+version: "3.8"
+services:
+
+  namenode:
+    image: psroyano/namenode-cliente:v1
+    container_name: namenode-h
+    hostname: namenode
+    networks:
+      - hadoop
+    ports: 
+      - "9870:9870" #Web Interface NameNode HDFS
+      - "8889:8889" #Jupyter Notebook
+      - "10002:10002" #WebUI HiveServer2
+    tty: true
+    volumes: 
+      - ./notebooks:/media/notebooks
+  
+  yarnmaster:
+    image: psroyano/yarnmaster:v1
+    container_name: yarnmaster
+    hostname: yarnmaster
+    networks:
+      - hadoop
+    ports:
+      - "8088:8088" #Web Interface Resource Manager
+      - "19888:19888" #MapReduce JobHistory Server
+    tty: true
+  
+  datanode:
+    image: psroyano/uhadoop:v1
+    deploy:
+      mode: replicated
+      replicas: 4 
+    networks:
+      - hadoop
+    tty: true
+
+  db:
+    image: psroyano/mi-mysql:v1
+    container_name: db
+    hostname: db
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment: 
+      MYSQL_ROOT_PASSWORD: bigdata
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: bigdata
+      MYSQL_PASSWORD: bigdata
+    networks:
+      - hadoop
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    hostname: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - hadoop
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    hostname: grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+    networks:
+      - hadoop
+
+networks:
+  hadoop:
