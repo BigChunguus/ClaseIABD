@@ -1,0 +1,259 @@
+/* -----------------------------------
+   RESET BÁSICO
+----------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Altura total */
+  html, body {
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+  }
+  
+  /* Fondo de la página (imagen fija) */
+  body {
+    background: url('fondo.jpg') no-repeat center center fixed;
+    background-size: cover;
+  
+    /* Layout flex para header-main-footer */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* -----------------------------------
+     HEADER
+  ----------------------------------- */
+  header {
+    height: 150px;
+    flex-shrink: 0;
+  
+    /* Fondo blanco semitransparente */
+    background-color: rgba(255, 255, 255, 0.8);
+  
+    /* Sombra sutil en la parte inferior */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+  }
+  
+  header img {
+    /* Logotipo más grande */
+    height: 100%;
+    /* Evita que ocupe más del contenedor */
+    max-width: 100%;
+  }
+  
+  /* -----------------------------------
+     FOOTER
+  ----------------------------------- */
+  footer {
+    height: 50px;
+    flex-shrink: 0;
+  
+    /* Fondo oscuro translúcido */
+    background-color: rgba(0, 0, 0, 0.7);
+  
+    /* Sombra sutil arriba */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    text-align: center;
+  }
+  
+  /* -----------------------------------
+     MAIN
+     - Ocupa el espacio entre header y footer
+     - Añadimos un pequeño margen exterior
+  ----------------------------------- */
+  main {
+    /* Resta la altura del header (80px) y footer (50px), 
+       y añade 20px totales de margen. */
+    height: calc(100vh - 80px - 50px - 20px);
+    margin: 10px;
+    width: calc(100% - 20px);
+  
+    /* Centrado del contenido interior */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* -----------------------------------
+     LOGIN CONTAINER (en index.html)
+  ----------------------------------- */
+  .login-container {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    width: 75%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    text-align: center;
+  }
+  
+  /* -----------------------------------
+     CHAT CONTAINER (en chat.html)
+     - 100% del espacio de main
+  ----------------------------------- */
+  .chat-container {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    width: 90%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  
+    /* Layout interno vertical */
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+  
+    /* Padding interno para separar contenido de bordes */
+    padding: 10px;
+  }
+  
+  /* -----------------------------------
+     DISTRIBUCIÓN DE ALTURAS:
+     .chat-header  → 15%
+     .chat-messages→ 75%
+     .chat-input   → 10%
+  ----------------------------------- */
+  .chat-header {
+    flex: 0 0 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .chat-messages {
+    flex: 0 0 75%;
+    border: 2px solid #ffe600; /* dorado */
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    margin-bottom: 5px;
+    overflow-y: auto;
+  }
+  
+  .chat-input {
+    flex: 0 0 10%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  /* -----------------------------------
+     MENSAJES
+  ----------------------------------- */
+  .message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffe600;
+    /* Alineación a la derecha */
+    text-align: left;
+  }
+  
+  .message-user {
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .message-time {
+    font-size: 0.8rem;
+    color: #ccc;
+  }
+  
+  /* -----------------------------------
+     FORMULARIOS, BOTONES, INPUTS
+  ----------------------------------- */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  label {
+    text-align: left;
+    margin-left: 5px;
+  }
+  
+  input[type="text"] {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    border: 2px solid #fff;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    transition: all 0.3s ease;
+  }
+  
+  input[type="text"]:focus {
+    background: rgba(255, 255, 255, 0.4);
+    border-color: #ffe600;
+  }
+  
+  button,
+  input[type="submit"] {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background: #007f00;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+  
+  button:hover,
+  input[type="submit"]:hover {
+    background: #00b300;
+    transform: scale(1.03);
+  }
+  
+  /* -----------------------------------
+     TÍTULOS
+  ----------------------------------- */
+  h1, h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #ffe600; /* dorado */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  }
+  
+  /* -----------------------------------
+     RESPONSIVIDAD
+     - Fuentes más grandes en pantallas pequeñas
+  ----------------------------------- */
+  @media (max-width: 1000px) {
+    /* Aumentar el tamaño de las fuentes en móvil */
+    h1, h2 {
+      font-size: 5rem;
+    }
+    input[type="text"],
+    button,
+    input[type="submit"] {
+      font-size: 3rem;
+    }
+    .message {
+      font-size: 3rem;
+    }
+    .chat-container {
+      max-width: 100%;
+    }
+  }
+  

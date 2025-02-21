@@ -1,0 +1,60 @@
+version: '3.8' 
+services: 
+  postgres: 
+    image: postgres:13 
+    environment: 
+      POSTGRES_USER: airflow 
+      POSTGRES_PASSWORD: airflow 
+      POSTGRES_DB: airflow 
+    ports: 
+      - "5432:5432" 
+    volumes:
+      - ./postgres:/docker-entrypoint-initdb.d 
+    networks:
+      - airflow_network
+
+  spark:
+    image: custom-spark-image  # Usar la imagen personalizada de Spark
+    environment:
+      - SPARK_MODE=master
+    volumes:
+      - ./spark/scripts:/scripts
+      - ./data:/data
+    networks:
+      - airflow_network
+
+  airflow:
+    image: custom-airflow-image  # Usar la imagen personalizada de Airflow
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/logs:/opt/airflow/logs
+      - ./airflow/plugins:/opt/airflow/plugins
+      - ./data:/data
+      - /var/run/docker.sock:/var/run/docker.sock  # Montamos el Docker socket
+    entrypoint: ["/bin/bash", "-c", "airflow db init && airflow webserver && airflow scheduler"]
+    networks:
+      - airflow_network
+    ports:
+      - "8081:8080"  # Airflow UI
+    depends_on:
+      - postgres
+      - spark
+
+  jupyter: 
+    image: jupyter/all-spark-notebook:latest 
+    ports: 
+      - "8888:8888" 
+    volumes: 
+      - ./spark/scripts:/home/jovyan/scripts 
+      - ./data:/data 
+    environment: 
+      - JUPYTER_TOKEN=password 
+    networks:
+      - airflow_network
+
+networks: 
+  airflow_network:  # Se define la red para los contenedores
+    driver: bridge

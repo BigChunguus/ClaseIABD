@@ -1,0 +1,41 @@
+[2025-02-17T19:15:17.445+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: etl_pipeline.transform manual__2025-02-17T19:07:37.029748+00:00 [queued]>
+[2025-02-17T19:15:17.462+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: etl_pipeline.transform manual__2025-02-17T19:07:37.029748+00:00 [queued]>
+[2025-02-17T19:15:17.463+0000] {taskinstance.py:1279} INFO - 
+--------------------------------------------------------------------------------
+[2025-02-17T19:15:17.467+0000] {taskinstance.py:1280} INFO - Starting attempt 2 of 2
+[2025-02-17T19:15:17.468+0000] {taskinstance.py:1281} INFO - 
+--------------------------------------------------------------------------------
+[2025-02-17T19:15:17.492+0000] {taskinstance.py:1300} INFO - Executing <Task(PythonOperator): transform> on 2025-02-17 19:07:37.029748+00:00
+[2025-02-17T19:15:17.496+0000] {standard_task_runner.py:55} INFO - Started process 255 to run task
+[2025-02-17T19:15:17.500+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'etl_pipeline', 'transform', 'manual__2025-02-17T19:07:37.029748+00:00', '--job-id', '16', '--raw', '--subdir', 'DAGS_FOLDER/etl_dag.py', '--cfg-path', '/tmp/tmpnied8s64']
+[2025-02-17T19:15:17.502+0000] {standard_task_runner.py:83} INFO - Job 16: Subtask transform
+[2025-02-17T19:15:17.519+0000] {logging_mixin.py:137} WARNING - /home/***/.local/lib/python3.7/site-packages/***/settings.py:249 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-17T19:15:17.578+0000] {task_command.py:388} INFO - Running <TaskInstance: etl_pipeline.transform manual__2025-02-17T19:07:37.029748+00:00 [running]> on host bf9eef710f83
+[2025-02-17T19:15:17.666+0000] {taskinstance.py:1509} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=etl_pipeline
+AIRFLOW_CTX_TASK_ID=transform
+AIRFLOW_CTX_EXECUTION_DATE=2025-02-17T19:07:37.029748+00:00
+AIRFLOW_CTX_TRY_NUMBER=2
+AIRFLOW_CTX_DAG_RUN_ID=manual__2025-02-17T19:07:37.029748+00:00
+[2025-02-17T19:15:17.667+0000] {logging_mixin.py:137} INFO - 🔍 Verificando la existencia del script de Spark ETL en /scripts/spark_etl.py...
+[2025-02-17T19:15:17.671+0000] {logging_mixin.py:137} INFO - 🚀 Iniciando Spark ETL con master en spark://spark-1:7077...
+[2025-02-17T19:15:17.679+0000] {taskinstance.py:1768} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 175, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 192, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/etl_dag.py", line 27, in spark_etl
+    text=True
+  File "/usr/local/lib/python3.7/subprocess.py", line 488, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/usr/local/lib/python3.7/subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "/usr/local/lib/python3.7/subprocess.py", line 1551, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: '/opt/spark/bin/spark-submit': '/opt/spark/bin/spark-submit'
+[2025-02-17T19:15:17.696+0000] {taskinstance.py:1323} INFO - Marking task as FAILED. dag_id=etl_pipeline, task_id=transform, execution_date=20250217T190737, start_date=20250217T191517, end_date=20250217T191517
+[2025-02-17T19:15:17.714+0000] {standard_task_runner.py:105} ERROR - Failed to execute job 16 for task transform ([Errno 2] No such file or directory: '/opt/spark/bin/spark-submit': '/opt/spark/bin/spark-submit'; 255)
+[2025-02-17T19:15:17.754+0000] {local_task_job.py:208} INFO - Task exited with return code 1
+[2025-02-17T19:15:17.797+0000] {taskinstance.py:2578} INFO - 0 downstream tasks scheduled from follow-on schedule check
