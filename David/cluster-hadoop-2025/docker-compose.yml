@@ -14,7 +14,7 @@ services:
     tty: true
     volumes: 
       - ./notebooks:/media/notebooks
-  
+
   yarnmaster:
     image: psroyano/yarnmaster:v1
     container_name: yarnmaster
@@ -25,12 +25,12 @@ services:
       - "8088:8088" #Web Interface Resource Manager
       - "19888:19888" #MapReduce JobHistory Server
     tty: true
-  
+
   datanode:
     image: psroyano/uhadoop:v1
     deploy:
       mode: replicated
-      replicas: 4 
+      replicas: 4
     networks:
       - hadoop
     tty: true
@@ -71,5 +71,26 @@ services:
     networks:
       - hadoop
 
+  ambari-server:
+    image: sequenceiq/ambari:latest  # Usando la imagen alternativa
+    container_name: ambari-server
+    hostname: ambari-server
+    environment:
+      - AMBARI_SERVER_SQL_PASSWORD=bigdata
+      - AMBARI_SERVER_DB_USER=ambari
+      - AMBARI_SERVER_DB_PASSWORD=ambari_password
+    ports:
+      - "8080:8080" # Interfaz web de Ambari
+    networks:
+      - hadoop
+    volumes:
+      - ambari-data:/var/lib/ambari-server
+    tty: true
+    command: /usr/bin/ambari-server start
+    privileged: true  # Modo privilegiado
+
 networks:
   hadoop:
+
+volumes:
+  ambari-data:
