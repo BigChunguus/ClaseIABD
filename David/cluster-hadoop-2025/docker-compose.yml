@@ -8,9 +8,9 @@ services:
     networks:
       - hadoop
     ports: 
-      - "9870:9870"  # Web Interface NameNode HDFS
-      - "8889:8889"  # Jupyter Notebook
-      - "10002:10002" # WebUI HiveServer2
+      - "9870:9870" #Web Interface NameNode HDFS
+      - "8889:8889" #Jupyter Notebook
+      - "10002:10002" #WebUI HiveServer2
     tty: true
     volumes: 
       - ./notebooks:/media/notebooks
@@ -22,8 +22,8 @@ services:
     networks:
       - hadoop
     ports:
-      - "8088:8088"  # Web Interface Resource Manager
-      - "19888:19888" # MapReduce JobHistory Server
+      - "8088:8088" #Web Interface Resource Manager
+      - "19888:19888" #MapReduce JobHistory Server
     tty: true
 
   datanode:
@@ -66,26 +66,31 @@ services:
     hostname: grafana
     ports:
       - "3000:3000"
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=123456
     depends_on:
       - prometheus
     networks:
       - hadoop
 
-  cadvisor:
-    image: gcr.io/cadvisor/cadvisor
-    container_name: cadvisor
-    hostname: cadvisor
+  ambari-server:
+    image: sequenceiq/ambari:latest  # Usando la imagen alternativa
+    container_name: ambari-server
+    hostname: ambari-server
+    environment:
+      - AMBARI_SERVER_SQL_PASSWORD=bigdata
+      - AMBARI_SERVER_DB_USER=ambari
+      - AMBARI_SERVER_DB_PASSWORD=ambari_password
     ports:
-      - "8080:8080"
-    volumes:
-      - /:/rootfs:ro
-      - /var/run:/var/run:ro
-      - /sys:/sys:ro
-      - /var/lib/docker/:/var/lib/docker:ro
+      - "8080:8080" # Interfaz web de Ambari
     networks:
       - hadoop
+    volumes:
+      - ambari-data:/var/lib/ambari-server
+    tty: true
+    command: /usr/bin/ambari-server start
+    privileged: true  # Modo privilegiado
 
 networks:
   hadoop:
+
+volumes:
+  ambari-data:
