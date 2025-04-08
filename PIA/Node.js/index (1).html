@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clustering con K-means</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Clustering con K-means</h1>
+  </header>
+
+  <section id="controls">
+    <div class="control-group">
+      <label for="numCentroids">Número de centroides para CSV:</label>
+      <input type="number" id="numCentroids" min="2" value="3">
+      <button id="generateCSV">Generar CSV</button>
+    </div>
+    <div class="control-group">
+      <label for="kValue">Valor de K para K-means:</label>
+      <input type="number" id="kValue" min="2" value="3">
+      <button id="applyKMeans">Aplicar K-means</button>
+    </div>
+  </section>
+
+  <section id="canvas-container">
+    <canvas id="canvas" width="600" height="600"></canvas>
+  </section>
+
+  <h2>Estadísticas</h2>
+  <table id="statsTable">
+    <thead>
+      <tr>
+        <th>Total de Puntos</th>
+        <th>Número de Clusters (CSV)</th>
+        <th>% de Aciertos</th>
+        <th>Número de Iteraciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td id="statTotalPoints"></td>
+        <td id="statClusters"></td>
+        <td id="statAccuracy"></td>
+        <td id="statIterations"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <section id="tables">
+    <h2>Datos de Puntos</h2>
+    <table id="pointsTable">
+      <thead>
+        <tr>
+          <th>X</th>
+          <th>Y</th>
+          <th>Cluster Original</th>
+          <th>Cluster Predicho</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </section>
+  
+  <!-- Sección final para cargar y segmentar una imagen -->
+  <section id="imageSeg">
+    <h2>Segmentación de Imagen (Detección de "grupos")</h2>
+    <div class="control-group">
+      <label for="uploadImage">Selecciona una imagen:</label>
+      <input type="file" id="uploadImage" accept="image/*">
+    </div>
+    <div class="control-group">
+      <label for="kImageValue">Número de clusters (K):</label>
+      <input type="number" id="kImageValue" min="2" value="6" style="width:60px">
+      <button id="segmentImageBtn">Detectar Objetos</button>
+    </div>
+    <canvas id="canvasImage" width="600" height="400"></canvas>
+    <p id="detectedObjectsText"></p>
+  </section>
+  
+  <!-- Incluir scripts: kmeans-js, generateRandomDataset.js, kmeansOnCSV.js y control.js -->
+  <script src="kmeans.bundle.js"></script>
+  <script src="generateRandomDataset.js"></script>
+  <script src="kmeansOnCSV.js"></script>
+  <script src="control.js"></script>
+
+  <!-- Nuevo script para la lógica de segmentación de imágenes -->
+  <script src="imageDetection.js"></script>
+</body>
+</html>

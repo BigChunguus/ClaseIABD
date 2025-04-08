@@ -1,0 +1,86 @@
+/* Estilos modernos con blanco, negro, gris y amarillo */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  header h1 {
+    color: #FFCC00; /* Amarillo */
+  }
+  
+  #controls {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  
+  .control-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  #canvas-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  canvas {
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  th {
+    background-color: #f0f0f0;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  /* ... Reglas existentes ... */
+
+/* Nueva sección para la carga y segmentación de imagen */
+#imageSeg {
+    margin-top: 30px;
+    border-top: 2px solid #999;
+    padding-top: 20px;
+  }
+  
+  #imageSeg h2 {
+    color: #FFCC00; /* Usamos el mismo amarillo del encabezado para cohesión */
+  }
+  
+  #canvasImage {
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    display: block;
+    margin-top: 10px;
+  }
+  
+  #detectedObjectsText {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
